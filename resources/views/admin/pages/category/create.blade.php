@@ -76,7 +76,7 @@
                     <option value="0">Danh mục cha</option>
                     @foreach ($categories as $category)
                         @if ($category->parent_id == 0)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option  value="{{ $category->id }}">{{ $category->name }}</option>
                             @foreach ($category->childrens as $childCategory)
                                 @include('admin.partials.option_category', ['childCategory' => $childCategory, 'name_extra' => '--'])
                             @endforeach

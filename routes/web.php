@@ -26,9 +26,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
         Route::get('/create', [AdminCategoryController::class, 'create'])->name('admin.categories.create');
         Route::post('/store', [AdminCategoryController::class, 'store'])->name('admin.categories.store');
-        Route::get('/edit', [AdminCategoryController::class, 'edit'])->name('admin.categories.edit');
-        Route::post('/update', [AdminCategoryController::class, 'update'])->name('admin.categories.update');
-        Route::get('/destroy', [AdminCategoryController::class, 'destroy'])->name('admin.categories.destroy');
+        Route::get('/edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.categories.edit');
+        Route::post('/update/{id}', [AdminCategoryController::class, 'update'])->name('admin.categories.update');
+        Route::get('/destroy/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.categories.destroy');
     });
 
     Route::prefix('products')->group(function () {

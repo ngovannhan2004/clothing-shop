@@ -19,10 +19,13 @@ class CategoryService implements DAOInterface
     {
         return $this->category->all();
     }
+    function getAllNotIn($id){
+        return $this->category->whereNotIn('id',[$id])->get();
+    }
 
     function getById($id)
     {
-        // TODO: Implement getById() method.
+        return $this->category->find($id);
     }
 
     function getByName($name)
@@ -39,12 +42,31 @@ class CategoryService implements DAOInterface
 
     function update($data, $id)
     {
-        // TODO: Implement update() method.
+        $category = $this->category->find($id);
+        $category->update([
+            'name' => $data['name'],
+            'slug' => Str::slug($data['name']),
+            'parent_id' => $data['parent_id'],
+        ]);
     }
 
-    function delete($id)
+
+    public function delete($id)
     {
-        // TODO: Implement delete() method.
+        // Tìm danh mục bằng ID
+        $category = Category::find($id);
+
+        if ($category) {
+            // Xóa danh mục
+            $category->delete();
+
+            // Tùy chọn, bạn có thể thực hiện các hành động bổ sung sau khi xóa,
+            // như xóa các bản ghi liên quan hoặc cập nhật dữ liệu khác.
+
+            return redirect()->back()->with('success', 'Xóa danh mục thành công.');
+        } else {
+            return redirect()->back()->with('error', 'Không tìm thấy danh mục.');
+        }
     }
 
     function search($value)

@@ -62,24 +62,37 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $categories = $this->categoryService->getAllNotIn($id);
+        $editCategory = $this->categoryService->getById($id);
+        return view('admin.pages.category.edit', compact(['editCategory', 'categories']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request,  $id)
     {
-        //
+        $existCategory = $this->categoryService->getById($id);
+        if(empty($existCategory)){
+            return redirect()->route('admin.categories.index')->with('error', 'Danh mục không tồn tại');
+        }
+        $data = [
+            'name' => ucfirst($request->name) ?? $existCategory->name,
+            'parent_id' => $request->parent_id ?? $existCategory->parent_id
+        ];
+        $this->categoryService->update($data, $id);
+        return redirect()->route('admin.categories.index')->with('success', 'Cập nhật danh mục thành công');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $this->categoryService->delete($id);
+        return redirect()->route('admin.categories.index')->with('success', 'Xóa danh mục thành công');
     }
 }
