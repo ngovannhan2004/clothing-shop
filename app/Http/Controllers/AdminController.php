@@ -22,7 +22,6 @@ class AdminController extends Controller
 
         return view('login');
     }
-//
     public function postLogin(Request $request)
     {
 
