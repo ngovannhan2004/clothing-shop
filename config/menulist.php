@@ -42,6 +42,49 @@ return [
                 'route' => 'admin.products.create'
             ]
         ]
-    ]
+    ],
 
+
+// Menu list
+    [
+        'name' => 'Menu List',
+        'icon' => 'fas fa-folder',
+        'value' => 'menus',
+        "children" => [
+            [
+                'name' => 'List Menu ',
+                'value' => 'index',
+                'icon' => 'fas fa-list',
+                'route' => 'admin.menus.index'
+
+            ],
+            [
+                'name' => 'Create Menu',
+                'value' => 'create',
+                'icon' => 'fas fa-plus',
+                'route' => 'admin.menus.create'
+
+            ]
+
+        ]
+    ],
+    [
+        'name' => 'User List',
+        'icon' => 'fas fa-folder',
+        'value' => 'users',
+        "children" => [
+            [
+                'name' => 'List User',
+                'value' => 'index',
+                'icon' => 'fas fa-list',
+                'route' => 'admin.users.index'
+            ],
+            [
+                'name' => 'Create User',
+                'value' => 'create',
+                'icon' => 'fas fa-plus',
+                'route' => 'admin.users.create'
+            ]
+        ]
+    ]
 ];

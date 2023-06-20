@@ -168,6 +168,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -180,8 +182,9 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
+    'Image' => Intervention\Image\Facades\Image::class,
     'aliases' => Facade::defaultAliases()->merge([
+
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

@@ -45,7 +45,7 @@ class AdminCategoryController extends Controller
     {
         $data = [
             'name' => ucfirst($request->name),
-            'parent_id' => $request->parent_id,
+            'parent_id' => $request->parent_id == 0 ? null : $request->parent_id
         ];
         $this->categoryService->create($data);
         return redirect()->route('admin.categories.index')->with('success', 'Thêm danh mục thành công');
@@ -72,10 +72,10 @@ class AdminCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request,  $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
         $existCategory = $this->categoryService->getById($id);
-        if(empty($existCategory)){
+        if (empty($existCategory)) {
             return redirect()->route('admin.categories.index')->with('error', 'Danh mục không tồn tại');
         }
         $data = [

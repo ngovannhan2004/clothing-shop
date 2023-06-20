@@ -11,7 +11,7 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,20 @@ class StoreProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [
+            'name' => 'required|unique:products,name',
+        ];
+        if ($this->input('category_id') != 0) {
+            $rules['category_id'] = 'exists:categories,id';
+        }
+        return $rules;
+    }
+    public function messages(): array
+    {
         return [
-            //
+            'name.required' => 'Vui lòng nhập tên.',
+            'name.unique' => 'Sản Phẩm này đã tồn tại.',
+            'category_id.exists' => 'Sản Phẩm này không tồn tại.',
         ];
     }
 }

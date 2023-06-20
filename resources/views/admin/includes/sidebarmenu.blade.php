@@ -1,7 +1,5 @@
 @php
     $menus = config('menulist');
-//    $menu_parent = '';
-//    $menu_child = '';
 @endphp
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

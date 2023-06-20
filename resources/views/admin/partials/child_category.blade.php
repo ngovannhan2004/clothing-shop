@@ -1,4 +1,3 @@
-<!-- partials.child_category.blade.php -->
 <tr style="padding: {{ $marginLeft }};">
     <td>{{ $childCategory->id }}</td>
     <td>{{ $childCategory->name }}</td>
