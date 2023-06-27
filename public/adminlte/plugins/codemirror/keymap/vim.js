@@ -5073,7 +5073,7 @@
             matchedLines.push(cmd ? line : line.text);
           }
         }
-        // if there is no [cmd], just display the list of matched lines
+        // if there is no [cmd], just home the list of matched lines
         if (!cmd) {
           showConfirm(cm, matchedLines.join('\n'));
           return;

@@ -11,6 +11,8 @@ class AdminUserController extends Controller
 {
 
     private $userService;
+
+
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
@@ -87,8 +89,10 @@ class AdminUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy( $id)
     {
+        $this->userService->delete($id);
+        return redirect()->route('admin.users.index')->with('success', 'Xóa user thành công');
 
     }
 }

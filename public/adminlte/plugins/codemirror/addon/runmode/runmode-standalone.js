@@ -279,7 +279,7 @@
       node.innerHTML = "";
       callback = function(text, style) {
         if (text == "\n") {
-          // Emitting LF or CRLF on IE8 or earlier results in an incorrect display.
+          // Emitting LF or CRLF on IE8 or earlier results in an incorrect home.
           // Emitting a carriage return makes everything ok.
           node.appendChild(document.createTextNode(ie_lt9 ? '\r' : text));
           col = 0;

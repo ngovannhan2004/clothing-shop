@@ -1796,7 +1796,7 @@
             boundariesElement: this._config.boundary
           }
         }
-      }; // Disable Popper if we have a static display
+      }; // Disable Popper if we have a static home
 
       if (this._config.display === 'static') {
         popperConfig.modifiers.applyStyle = {

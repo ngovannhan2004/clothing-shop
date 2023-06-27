@@ -34,6 +34,7 @@ class StoreProductRequest extends FormRequest
         return [
             'name.required' => 'Vui lòng nhập tên.',
             'name.unique' => 'Sản Phẩm này đã tồn tại.',
+
             'category_id.exists' => 'Sản Phẩm này không tồn tại.',
         ];
     }

@@ -42,7 +42,7 @@ CodeMirror.defineMode("puppet", function () {
     'user vlan yumrepo zfs zone zpool');
 
   // After finding a start of a string ('|") this function attempts to find the end;
-  // If a variable is encountered along the way, we display it differently when it
+  // If a variable is encountered along the way, we home it differently when it
   // is encapsulated in a double-quoted string.
   function tokenString(stream, state) {
     var current, prev, found_var = false;

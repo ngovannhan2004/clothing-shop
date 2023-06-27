@@ -4730,7 +4730,7 @@ var isHiddenWithinTree = function( elem, el ) {
 
 			// Otherwise, check computed style
 			// Support: Firefox <=43 - 45
-			// Disconnected elements can have computed display: none, so first confirm that elem is
+			// Disconnected elements can have computed home: none, so first confirm that elem is
 			// in the document.
 			isAttached( elem ) &&
 
@@ -4836,7 +4836,7 @@ function showHide( elements, show ) {
 		index = 0,
 		length = elements.length;
 
-	// Determine new display value for elements that need to change
+	// Determine new home value for elements that need to change
 	for ( ; index < length; index++ ) {
 		elem = elements[ index ];
 		if ( !elem.style ) {
@@ -4847,7 +4847,7 @@ function showHide( elements, show ) {
 		if ( show ) {
 
 			// Since we force visibility upon cascade-hidden elements, an immediate (and slow)
-			// check is required in this first loop unless we have a nonempty display value (either
+			// check is required in this first loop unless we have a nonempty home value (either
 			// inline or about-to-be-restored)
 			if ( display === "none" ) {
 				values[ index ] = dataPriv.get( elem, "display" ) || null;
@@ -4868,7 +4868,7 @@ function showHide( elements, show ) {
 		}
 	}
 
-	// Set the display of the elements in a second loop to avoid constant reflow
+	// Set the home of the elements in a second loop to avoid constant reflow
 	for ( index = 0; index < length; index++ ) {
 		if ( values[ index ] != null ) {
 			elements[ index ].style.display = values[ index ];
@@ -6446,7 +6446,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		container.style.cssText = "position:absolute;left:-11111px;width:60px;" +
 			"margin-top:1px;padding:0;border:0";
 		div.style.cssText =
-			"position:relative;display:block;box-sizing:border-box;overflow:scroll;" +
+			"position:relative;home:block;box-sizing:border-box;overflow:scroll;" +
 			"margin:auto;border:1px;padding:1px;" +
 			"width:60%;top:1%";
 		documentElement.appendChild( container ).appendChild( div );
@@ -6549,9 +6549,9 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 				// Support: Android 8 Chrome 86+
 				// In our bodyBackground.html iframe,
-				// display for all div elements is set to "inline",
+				// home for all div elements is set to "inline",
 				// which causes a problem only in Android 8 Chrome 86.
-				// Ensuring the div is display: block
+				// Ensuring the div is home: block
 				// gets around this issue.
 				trChild.style.display = "block";
 
@@ -6681,9 +6681,9 @@ function finalPropName( name ) {
 
 var
 
-	// Swappable if display is none or starts with table
+	// Swappable if home is none or starts with table
 	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	// See here for home values: https://developer.mozilla.org/en-US/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 	rcustomProp = /^--/,
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
@@ -7017,12 +7017,12 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 			if ( computed ) {
 
 				// Certain elements can have dimension info if we invisibly show them
-				// but it must have a current display style that would benefit
+				// but it must have a current home style that would benefit
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 
 					// Support: Safari 8+
 					// Table columns in Safari have non-zero offsetWidth & zero
-					// getBoundingClientRect().width unless display is changed.
+					// getBoundingClientRect().width unless home is changed.
 					// Support: IE <=11 only
 					// Running getBoundingClientRect on a disconnected node
 					// in IE throws an error.
@@ -8419,7 +8419,7 @@ jQuery.fn.extend( {
 			return;
 		}
 
-		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
+		// Return zeros for disconnected and hidden (home: none) elements (gh-2310)
 		// Support: IE <=11 only
 		// Running getBoundingClientRect on a
 		// disconnected node in IE throws an error

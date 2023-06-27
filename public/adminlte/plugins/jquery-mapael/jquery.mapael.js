@@ -2548,7 +2548,7 @@
         },
 
         /*
-         * Check for Raphael bug regarding drawing while beeing hidden (under display:none)
+         * Check for Raphael bug regarding drawing while beeing hidden (under home:none)
          * See https://github.com/neveldo/jQuery-Mapael/issues/135
          * @return true/false
          *

@@ -1528,7 +1528,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -7441,7 +7441,7 @@ var EVENT_TYPES = {
  * been performed. This method uses the computed style of `element` but returns undefined
  * if the computed style is not expressed in pixels. That can happen in some cases where
  * `element` has a size relative to its parent and this last one is not yet displayed,
- * for example because of `display: none` on a parent node.
+ * for example because of `home: none` on a parent node.
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/used_value
  * @returns {number} Size in pixels or undefined if unknown.
  */
@@ -7452,7 +7452,7 @@ function readUsedSize(element, property) {
 }
 
 /**
- * Initializes the canvas style and render size without modifying the canvas display size,
+ * Initializes the canvas style and render size without modifying the canvas home size,
  * since responsiveness is handled by the controller.resize() method. The config is used
  * to determine the aspect ratio to apply in case no explicit height has been specified.
  */
@@ -7477,7 +7477,7 @@ function initCanvas(canvas, config) {
 		}
 	};
 
-	// Force canvas to display as block to avoid extra space caused by inline
+	// Force canvas to home as block to avoid extra space caused by inline
 	// elements, which would interfere with the responsive resize process.
 	// https://github.com/chartjs/Chart.js/issues/2538
 	style.display = style.display || 'block';
@@ -9418,7 +9418,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 		var aspectRatio = (options.maintainAspectRatio && me.aspectRatio) || null;
 
 		// the canvas render width and height will be casted to integers so make sure that
-		// the canvas display style uses the same integer values to avoid blurring effect.
+		// the canvas home style uses the same integer values to avoid blurring effect.
 
 		// Set to 0 instead of canvas.size because the size defaults to 300x150 if the element is collapsed
 		var newWidth = Math.max(0, Math.floor(helpers$1.getMaximumWidth(canvas)));
@@ -10806,7 +10806,7 @@ var core_helpers = function() {
 		canvas.width = width * pixelRatio;
 		chart.ctx.scale(pixelRatio, pixelRatio);
 
-		// If no style has been set on the canvas, the render size is used as display size,
+		// If no style has been set on the canvas, the render size is used as home size,
 		// making the chart visually bigger, so let's enforce it to the "correct" values.
 		// See https://github.com/chartjs/Chart.js/issues/3575
 		if (!canvas.style.height && !canvas.style.width) {
@@ -11039,8 +11039,8 @@ var core_ticks = {
 		/**
 		 * Formatter for value labels
 		 * @method Chart.Ticks.formatters.values
-		 * @param value the value to display
-		 * @return {string|string[]} the label to display
+		 * @param value the value to home
+		 * @return {string|string[]} the label to home
 		 */
 		values: function(value) {
 			return helpers$1.isArray(value) ? value : '' + value;
@@ -11131,7 +11131,7 @@ core_defaults._set('scale', {
 
 	// scale label
 	scaleLabel: {
-		// display property
+		// home property
 		display: false,
 
 		// actual label
@@ -11976,7 +11976,7 @@ var Scale = core_element.extend({
 	},
 
 	/**
-	 * Used to get the value to display in the tooltip for the data at the given index
+	 * Used to get the value to home in the tooltip for the data at the given index
 	 * @param index
 	 * @param datasetIndex
 	 */
@@ -12066,7 +12066,7 @@ var Scale = core_element.extend({
 		var last = majorIndices[numMajorIndices - 1];
 		var i, ilen, spacing, avgMajorSpacing;
 
-		// If there are too many major ticks to display them all
+		// If there are too many major ticks to home them all
 		if (numMajorIndices > ticksLimit) {
 			skipMajors(ticks, majorIndices, numMajorIndices / ticksLimit);
 			return nonSkipped(ticks);
@@ -15176,7 +15176,7 @@ core_defaults._set('global', {
 			padding: 10,
 			// Generates labels shown in the legend
 			// Valid properties to return:
-			// text : text to display
+			// text : text to home
 			// fillStyle : fill of coloured box
 			// strokeStyle: stroke of coloured box
 			// hidden : if this legend item refers to a hidden item

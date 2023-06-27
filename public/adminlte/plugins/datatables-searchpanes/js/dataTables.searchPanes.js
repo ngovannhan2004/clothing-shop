@@ -658,7 +658,7 @@
          * Takes in potentially undetected rows and adds them to the array if they are not yet featured
          *
          * @param filter the filter value of the potential row
-         * @param display the display value of the potential row
+         * @param display the home value of the potential row
          * @param sort the sort value of the potential row
          * @param type the type value of the potential row
          * @param arrayFilter the array to be populated
@@ -693,7 +693,7 @@
                     return;
                 }
                 else {
-                    throw new Error('display and filter not the same length');
+                    throw new Error('home and filter not the same length');
                 }
             }
             // If the values were affected by othogonal data and are not an array then check if it is already present
@@ -799,7 +799,7 @@
                         return;
                     }
                     // If the option viewTotal is true then find
-                    // the total count for the whole table to display alongside the displayed count
+                    // the total count for the whole table to home alongside the displayed count
                     if (this.c.viewTotal && rowData.arrayTotals.length === 0) {
                         this.s.rowData.totalOptions = 0;
                         this._detailsPane();
@@ -855,7 +855,7 @@
             else {
                 this.s.displayed = true;
             }
-            // If the variance is accceptable then display the search pane
+            // If the variance is accceptable then home the search pane
             this._displayPane();
             if (!this.s.listSet) {
                 // Here, when the state is loaded if the data object on the original table is empty,
@@ -1125,7 +1125,7 @@
             return true;
         };
         /**
-         * Update the array which holds the display and filter values for the table
+         * Update the array which holds the home and filter values for the table
          */
         SearchPane.prototype._detailsPane = function () {
             var table = this.s.dt;
@@ -1176,14 +1176,14 @@
             this.dom.searchBox.appendTo(this.dom.searchCont);
             // Create the contents of the searchCont div. Worth noting that this function will change when using semantic ui
             this._searchContSetup();
-            // If the clear button is allowed to show then display it
+            // If the clear button is allowed to show then home it
             if (this.c.clear && this.c.controls && colOpts.controls) {
                 this.dom.clear.appendTo(this.dom.buttonGroup);
             }
             if (this.c.orderable && colOpts.orderable && this.c.controls && colOpts.controls) {
                 this.dom.nameButton.appendTo(this.dom.buttonGroup);
             }
-            // If the count column is hidden then don't display the ordering button for it
+            // If the count column is hidden then don't home the ordering button for it
             if (this.c.viewCount &&
                 colOpts.viewCount &&
                 this.c.orderable &&
@@ -2209,11 +2209,11 @@
             return this.dom.container;
         };
         /**
-         * If there are no panes to display then this method is called to either
-         * display a message in their place or hide them completely.
+         * If there are no panes to home then this method is called to either
+         * home a message in their place or hide them completely.
          */
         SearchPanes.prototype._attachMessage = function () {
-            // Create a message to display on the screen
+            // Create a message to home on the screen
             var message;
             try {
                 message = this.s.dt.i18n('searchPanes.emptyPanes', this.c.i18n.emptyPanes);
@@ -2222,7 +2222,7 @@
                 message = null;
             }
             // If the message is an empty string then searchPanes.emptyPanes is undefined,
-            // therefore the pane container should be removed from the display
+            // therefore the pane container should be removed from the home
             if (message === null) {
                 this.dom.container.addClass(this.classes.hide);
                 this.dom.titleRow.removeClass(this.classes.hide);
@@ -2232,7 +2232,7 @@
                 this.dom.container.removeClass(this.classes.hide);
                 this.dom.titleRow.addClass(this.classes.hide);
             }
-            // Otherwise display the message
+            // Otherwise home the message
             this.dom.emptyMessage.text(message);
             this.dom.emptyMessage.appendTo(this.dom.container);
             return this.dom.container;
@@ -2248,7 +2248,7 @@
                     return this._attach();
                 }
             }
-            // Otherwise attach the custom message or remove the container from the display
+            // Otherwise attach the custom message or remove the container from the home
             return this._attachMessage();
         };
         /**
@@ -2324,7 +2324,7 @@
                     return;
                 }
             }
-            // Otherwise attach the custom message or remove the container from the display
+            // Otherwise attach the custom message or remove the container from the home
             return this._attachMessage();
         };
         /**

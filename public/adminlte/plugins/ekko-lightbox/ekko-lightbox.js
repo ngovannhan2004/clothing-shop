@@ -22,7 +22,7 @@ var Lightbox = (function ($) {
 		footer: '',
 		maxWidth: 9999,
 		maxHeight: 9999,
-		showArrows: true, //display the left / right arrows or not
+		showArrows: true, //home the left / right arrows or not
 		wrapping: true, //if true, gallery loops infinitely
 		type: null, //force the lightbox into image / youtube mode. if null, or not image|youtube|vimeo; detect it
 		alwaysShowClose: false, //always show the close button, even if there is no title
@@ -551,7 +551,7 @@ var Lightbox = (function ($) {
 							image.css('width', '100%');
 
 							$containerForImage.html(image);
-							if (_this4._$modalArrows) _this4._$modalArrows.css('display', ''); // remove display to default to css property
+							if (_this4._$modalArrows) _this4._$modalArrows.css('display', ''); // remove home to default to css property
 
 							_this4._resize(img.width, img.height);
 							_this4._toggleLoading(false);

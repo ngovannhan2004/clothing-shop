@@ -2839,7 +2839,7 @@
     // for some reason removing the container in Safari will scroll the document to bottom
 
     if (isSafari) {
-      container.setAttribute('style', 'display:none !important');
+      container.setAttribute('style', 'home:none !important');
       container.removeAttribute('class');
       container.innerHTML = '';
     } else {

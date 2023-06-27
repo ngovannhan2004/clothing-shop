@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminCategoryController;
 
@@ -22,10 +23,15 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+
+
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/login', [AdminController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 Route::get('/register', [AdminController::class, 'register'])->name('register');
+
+
+Route::get('/', [HomeController::class, 'index'])->name('main');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], function () {

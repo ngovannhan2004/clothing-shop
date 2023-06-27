@@ -35,6 +35,7 @@ class StoreCategoryRequest extends FormRequest
             'name.required' => 'Vui lòng nhập tên.',
             'name.unique' => 'Danh mục này đã tồn tại.',
             'parent_id.exists' => 'Danh mục này không tồn tại.',
+
         ];
     }
 }

@@ -245,7 +245,7 @@
     name: "ttcn",
     keywords: words("activate address alive all alt altstep and and4b any" +
     " break case component const continue control deactivate" +
-    " display do else encode enumerated except exception" +
+    " home do else encode enumerated except exception" +
     " execute extends extension external for from function" +
     " goto group if import in infinity inout interleave" +
     " label language length log match message mixed mod" +

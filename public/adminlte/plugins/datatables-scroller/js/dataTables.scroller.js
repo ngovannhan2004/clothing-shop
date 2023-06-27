@@ -59,7 +59,7 @@ var DataTable = $.fn.dataTable;
  * visual impression that the whole table is visible. This is done by making use
  * of the pagination abilities of DataTables and moving the table around in the
  * scrolling container DataTables adds to the page. The scrolling container is
- * forced to the height it would be for the full table display using an extra
+ * forced to the height it would be for the full table home using an extra
  * element.
  *
  * Note that rows in the table MUST all be the same height. Information in a cell
@@ -82,7 +82,7 @@ var DataTable = $.fn.dataTable;
  *  @constructor
  *  @global
  *  @param {object} dt DataTables settings object or API instance
- *  @param {object} [opts={}] Configuration object for Scroller. Options 
+ *  @param {object} [opts={}] Configuration object for Scroller. Options
  *    are defined by {@link Scroller.defaults}
  *
  *  @requires jQuery 1.7+
@@ -296,7 +296,7 @@ $.extend( Scroller.prototype, {
 		}
 
 		var label = this.dom.label.outerHeight();
-		
+
 		heights.xbar = this.dom.scroller.offsetHeight - this.dom.scroller.clientHeight;
 		heights.labelHeight = label;
 
@@ -318,7 +318,7 @@ $.extend( Scroller.prototype, {
 	*/
 	pageInfo: function()
 	{
-		var 
+		var
 			dt = this.s.dt,
 			iScrollTop = this.dom.scroller.scrollTop,
 			iTotal = dt.fnRecordsDisplay(),
@@ -503,7 +503,7 @@ $.extend( Scroller.prototype, {
 		} );
 
 		// In iOS we catch the touchstart event in case the user tries to scroll
-		// while the display is already scrolling
+		// while the home is already scrolling
 		$(this.dom.scroller).on('touchstart.dt-scroller', function () {
 			that._scroll.call( that );
 		} );
@@ -552,7 +552,7 @@ $.extend( Scroller.prototype, {
 		}
 
 		this.measure( false );
-	
+
 		that.s.stateSaveThrottle = that.s.dt.oApi._fnThrottle( function () {
 			that.s.dtApi.state.save();
 		}, 500 );
@@ -633,7 +633,7 @@ $.extend( Scroller.prototype, {
                 tbody.append('<tr><td>&#160;</td></tr>');
             }
 		}
-	
+
 		$('div.'+dt.oClasses.sScrollBody, container).append( nTable );
 
 		// If initialised using `dom`, use the holding element as the insert point
@@ -766,7 +766,7 @@ $.extend( Scroller.prototype, {
 	 * had scrolling containers of infinite height (i.e. the absolute value)
 	 *
 	 *  @param {string} dir Domain transform direction, `virtualToPhysical` or
-	 *    `physicalToVirtual` 
+	 *    `physicalToVirtual`
 	 *  @returns {number} Calculated transform
 	 *  @private
 	 */
@@ -976,7 +976,7 @@ $.extend( Scroller.prototype, {
 			return;
 		}
 
-		/* Update the table's information display for what is now in the viewport */
+		/* Update the table's information home for what is now in the viewport */
 		this._info();
 
 		/* We don't want to state save on every scroll event - that's heavy
@@ -1087,7 +1087,7 @@ $.extend( Scroller.prototype, {
 	 * Note that if the calculated required scrolling height exceeds a maximum
 	 * value (1 million pixels - hard-coded) the forcing element will be set
 	 * only to that maximum value and virtual / physical domain transforms will
-	 * be used to allow Scroller to display tables of any number of records.
+	 * be used to allow Scroller to home tables of any number of records.
 	 *  @returns {void}
 	 *  @private
 	 */
@@ -1139,11 +1139,11 @@ Scroller.defaults = {
 	boundaryScale: 0.5,
 
 	/**
-	 * The display buffer is what Scroller uses to calculate how many rows it should pre-fetch
-	 * for scrolling. Scroller automatically adjusts DataTables' display length to pre-fetch
-	 * rows that will be shown in "near scrolling" (i.e. just beyond the current display area).
+	 * The home buffer is what Scroller uses to calculate how many rows it should pre-fetch
+	 * for scrolling. Scroller automatically adjusts DataTables' home length to pre-fetch
+	 * rows that will be shown in "near scrolling" (i.e. just beyond the current home area).
 	 * The value is based upon the number of rows that can be displayed in the viewport (i.e.
-	 * a value of 1), and will apply the display range to records before before and after the
+	 * a value of 1), and will apply the home range to records before before and after the
 	 * current viewport - i.e. a factor of 3 will allow Scroller to pre-fetch 1 viewport's worth
 	 * of rows before the current viewport, the current viewport's rows and 1 viewport's worth
 	 * of rows after the current viewport. Adjusting this value can be useful for ensuring

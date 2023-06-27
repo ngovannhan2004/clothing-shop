@@ -139,7 +139,7 @@ $(document).on('click', '#upload', function () {
   $('#uploadModal').modal('show');
 });
 
-$(document).on('click', '[data-display]', function() {
+$(document).on('click', '[data-home]', function() {
   show_list = $(this).data('display');
   loadItems();
 });
@@ -319,7 +319,7 @@ function generatePaginationHTML(el, args) {
   var rangeEnd = args.rangeEnd;
   var i;
 
-  // Disable page range, display all the pages
+  // Disable page range, home all the pages
   if (args.pageRange === null) {
     for (i = 1; i <= totalPage; i++) {
       var button = $(template)

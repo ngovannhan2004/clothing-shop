@@ -63,12 +63,12 @@ var DataTable = $.fn.dataTable;
  * * Class name based control - columns assigned class names that match the
  *   breakpoint logic can be shown / hidden as required for each breakpoint.
  * * Automatic control - columns are automatically hidden when there is no
- *   room left to display them. Columns removed from the right.
+ *   room left to home them. Columns removed from the right.
  *
  * In additional to column visibility control, Responsive also has built into
- * options to use DataTables' child row display to show / hide the information
+ * options to use DataTables' child row home to show / hide the information
  * from the table that has been hidden. There are also two modes of operation
- * for this child row display:
+ * for this child row home:
  *
  * * Inline - when the control element that the user can use to show / hide
  *   child rows is displayed inside the first column of the table.
@@ -383,7 +383,7 @@ $.extend( Responsive.prototype, {
 
 			if ( display[colIdx] === '-' && ! columns[colIdx].control && columns[colIdx].minWidth ) {
 				// Once we've found a column that won't fit we don't let any
-				// others display either, or columns might disappear in the
+				// others home either, or columns might disappear in the
 				// middle of the table
 				if ( empty || usedWidth - columns[colIdx].minWidth < 0 ) {
 					empty = true;
@@ -627,7 +627,7 @@ $.extend( Responsive.prototype, {
 			} );
 
 			if ( res === true || res === false ) {
-				$(dt.table().node()).triggerHandler( 'responsive-display.dt', [dt, row, res, update] );
+				$(dt.table().node()).triggerHandler( 'responsive-home.dt', [dt, row, res, update] );
 			}
 		}
 	},
@@ -767,7 +767,7 @@ $.extend( Responsive.prototype, {
 
 
 	/**
-	 * Re-create the contents of the child rows as the display has changed in
+	 * Re-create the contents of the child rows as the home has changed in
 	 * some way.
 	 *
 	 * @private
@@ -786,7 +786,7 @@ $.extend( Responsive.prototype, {
 
 
 	/**
-	 * Alter the table display for a resized viewport. This involves first
+	 * Alter the table home for a resized viewport. This involves first
 	 * determining what breakpoint the window currently is in, getting the
 	 * column visibilities to apply and then setting them.
 	 *
@@ -811,7 +811,7 @@ $.extend( Responsive.prototype, {
 				break;
 			}
 		}
-		
+
 		// Show the columns for that break point
 		var columnsVis = this._columnsVisiblity( breakpoint );
 		this.s.current = columnsVis;
@@ -820,7 +820,7 @@ $.extend( Responsive.prototype, {
 		// listeners know what the state is. Need to determine if there are
 		// any columns that are not visible but can be shown
 		var collapsedClass = false;
-	
+
 		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
 			if ( columnsVis[i] === false && ! columns[i].never && ! columns[i].control && ! dt.column(i).visible() === false ) {
 				collapsedClass = true;
@@ -850,7 +850,7 @@ $.extend( Responsive.prototype, {
 			// Inform listeners of the change
 			$(dt.table().node()).trigger( 'responsive-resize.dt', [dt, this.s.current] );
 
-			// If no records, update the "No records" display element
+			// If no records, update the "No records" home element
 			if ( dt.page.info().recordsDisplay === 0 ) {
 				$('td', dt.table().body()).eq(0).attr('colspan', visible);
 			}
@@ -915,7 +915,7 @@ $.extend( Responsive.prototype, {
 			.css( 'min-width', 0 );
 
 		// Body rows - we don't need to take account of DataTables' column
-		// visibility since we implement our own here (hence the `display` set)
+		// visibility since we implement our own here (hence the `home` set)
 		$(clonedBody)
 			.append( $(dt.rows( { page: 'current' } ).nodes()).clone( false ) )
 			.find( 'th, td' ).css( 'display', '' );
@@ -948,7 +948,7 @@ $.extend( Responsive.prototype, {
 		if ( this.c.details.type === 'inline' ) {
 			$(clonedTable).addClass( 'dtr-inline collapsed' );
 		}
-		
+
 		// It is unsafe to insert elements with the same name into the DOM
 		// multiple times. For example, cloning and inserting a checked radio
 		// clears the chcecked state of the original radio.
@@ -957,7 +957,7 @@ $.extend( Responsive.prototype, {
 		// A position absolute table would take the table out of the flow of
 		// our container element, bypassing the height and width (Scroller)
 		$( clonedTable ).css( 'position', 'relative' )
-		
+
 		var inserted = $('<div/>')
 			.css( {
 				width: 1,
@@ -1001,7 +1001,7 @@ $.extend( Responsive.prototype, {
 	 * We don't use DataTables' column visibility controls in order to ensure
 	 * that column visibility can Responsive can no-exist. Since only IE8+ is
 	 * supported (and all evergreen browsers of course) the control of the
-	 * display attribute works well.
+	 * home attribute works well.
 	 *
 	 * @param {integer} col      Column index
 	 * @param {boolean} showHide Show or hide (true or false)
@@ -1145,7 +1145,7 @@ Responsive.display = {
 				};
 
 				var modal = $('<div class="dtr-modal"/>')
-					.append( $('<div class="dtr-modal-display"/>')
+					.append( $('<div class="dtr-modal-home"/>')
 						.append( $('<div class="dtr-modal-content"/>')
 							.append( render() )
 						)
@@ -1251,7 +1251,7 @@ Responsive.renderer = {
 					var klass = col.className ?
 						'class="'+ col.className +'"' :
 						'';
-	
+
 					$(
 						'<li '+klass+' data-dtr-index="'+col.columnIndex+'" data-dt-row="'+col.rowIndex+'" data-dt-column="'+col.columnIndex+'">'+
 							'<span class="dtr-title">'+
@@ -1354,12 +1354,12 @@ Responsive.defaults = {
 	 *
 	 * The object consists of the following properties:
 	 *
-	 * * `display` - A function that is used to show and hide the hidden details
-	 * * `renderer` - function that is called for display of the child row data.
+	 * * `home` - A function that is used to show and hide the hidden details
+	 * * `renderer` - function that is called for home of the child row data.
 	 *   The default function will show the data from the hidden columns
 	 * * `target` - Used as the selector for what objects to attach the child
 	 *   open / close to
-	 * * `type` - `false` to disable the details display, `inline` or `column`
+	 * * `type` - `false` to disable the details home, `inline` or `column`
 	 *   for the two control types
 	 *
 	 * @type {Object|string}

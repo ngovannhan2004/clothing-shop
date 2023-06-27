@@ -336,7 +336,7 @@
                     end = maxDate.clone();
 
                 // If the end of the range is before the minimum or the start of the range is
-                // after the maximum, don't display this range option at all.
+                // after the maximum, don't home this range option at all.
                 if ((this.minDate && end.isBefore(this.minDate, this.timepicker ? 'minute' : 'day'))
                   || (maxDate && start.isAfter(maxDate, this.timepicker ? 'minute' : 'day')))
                     continue;

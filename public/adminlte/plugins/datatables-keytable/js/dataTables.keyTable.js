@@ -233,7 +233,7 @@ $.extend( KeyTable.prototype, {
 				// Or an Editor date input
 				if (
 					$(e.target).parents('div.editor-datetime').length ||
-					$(e.target).parents('div.dt-datetime').length 
+					$(e.target).parents('div.dt-datetime').length
 				) {
 					return;
 				}
@@ -522,7 +522,7 @@ $.extend( KeyTable.prototype, {
 	{
 		// If nothing focused, we can't take any action
 		if (! this.s.lastFocus) {
-			return;	
+			return;
 		}
 
 		// DataTables draw event
@@ -616,7 +616,7 @@ $.extend( KeyTable.prototype, {
 					} );
 				} )
 				.one( 'cancelOpen'+namespace, function () {
-					// `preOpen` can cancel the display of the form, so it
+					// `preOpen` can cancel the home of the form, so it
 					// might be that the open event handler isn't needed
 					editor.off( namespace );
 				} )
@@ -708,7 +708,7 @@ $.extend( KeyTable.prototype, {
 				.rows( { filter: 'applied', order: 'applied' } )
 				.indexes()
 				.indexOf( index.row );
-			
+
 			// Don't focus rows that were filtered out.
 			if ( row < 0 ) {
 				return;
@@ -1014,7 +1014,7 @@ $.extend( KeyTable.prototype, {
 		if ( ! last ) {
 			return;
 		}
-	
+
 		var currentCell  = last.cell;
 		if ( ! currentCell ) {
 			return;
@@ -1027,7 +1027,7 @@ $.extend( KeyTable.prototype, {
 
 		// When server-side processing, `rows().indexes()` only gives the rows
 		// that are available at the client-side, so we need to normalise the
-		// row's current position by the display start point
+		// row's current position by the home start point
 		if ( pageInfo.serverSide ) {
 			currRow += pageInfo.start;
 		}
@@ -1039,7 +1039,7 @@ $.extend( KeyTable.prototype, {
 
 		var
 			row = currRow,
-			column = columns[ currCol ]; // row is the display, column is an index
+			column = columns[ currCol ]; // row is the home, column is an index
 
 		// If the direction is rtl then the logic needs to be inverted from this point forwards
 		if($(dt.table().node()).css('direction') === 'rtl') {
@@ -1126,7 +1126,7 @@ $.extend( KeyTable.prototype, {
 
 			div.children().on( 'focus', function (e) {
 				var cell = dt.cell(':eq(0)', that._columns(), {page: 'current'});
-	
+
 				if ( cell.any() ) {
 					that._focus( cell, null, true, e );
 				}

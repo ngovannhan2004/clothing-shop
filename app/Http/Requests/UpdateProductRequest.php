@@ -24,8 +24,6 @@ class UpdateProductRequest extends  FormRequest
         return [
             'name' => 'required|string|max:255',
             'category_id' => 'required|integer|exists:categories,id',
-
-
         ];
     }
 
@@ -40,9 +38,9 @@ class UpdateProductRequest extends  FormRequest
             'name.required' => 'Vui lòng nhập tên.',
             'name.string' => 'Tên phải là một chuỗi.',
             'name.max' => 'Tên không được vượt quá :max ký tự.',
-            'parent_id.required' => 'Vui lòng chọn danh mục cha.',
-            'parent_id.integer' => 'Sản Phẩm cha phải là một số nguyên.',
-            'parent_id.exists' => 'Sản Phẩm cha không tồn tại.',
+            'category_id.required' => 'Vui lòng chọn danh mục cha.',
+            'category_id.integer' => 'Sản Phẩm cha phải là một số nguyên.',
+            'category_id.exists' => 'Sản Phẩm cha không tồn tại.',
         ];
     }
 }

@@ -5,7 +5,7 @@
 
 ( function( factory ) {
 	"use strict";
-	
+
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
@@ -842,7 +842,7 @@ $.position = {
 		}
 		var w1, w2,
 			div = $( "<div style=" +
-				"'display:block;position:absolute;width:200px;height:200px;overflow:hidden;'>" +
+				"'home:block;position:absolute;width:200px;height:200px;overflow:hidden;'>" +
 				"<div style='height:300px;width:auto;'></div></div>" ),
 			innerDiv = div.children()[ 0 ];
 
@@ -7392,7 +7392,7 @@ function Datepicker() {
 		gotoCurrent: false, // True if today link goes back to current selection instead
 		changeMonth: false, // True if month can be selected directly, false if only prev/next
 		changeYear: false, // True if year can be selected directly, false if only prev/next
-		yearRange: "c-10:c+10", // Range of years to display in drop-down,
+		yearRange: "c-10:c+10", // Range of years to home in drop-down,
 			// either relative to today's year (-nn:+nn), relative to currently displayed year
 			// (c-nn:c+nn), absolute (nnnn:nnnn), or a combination of the above (nnnn:-n)
 		showOtherMonths: false, // True to show dates in other months, false to leave blank
@@ -7405,7 +7405,7 @@ function Datepicker() {
 			// string value starting with "+" for current year + value
 		minDate: null, // The earliest selectable date, or null for no limit
 		maxDate: null, // The latest selectable date, or null for no limit
-		duration: "fast", // Duration of display/closure
+		duration: "fast", // Duration of home/closure
 		beforeShowDay: null, // Function that takes a date and returns an array with
 			// [0] = true if selectable, false if not, [1] = custom CSS class name(s) or "",
 			// [2] = cell title (optional), e.g. $.datepicker.noWeekends
@@ -7621,14 +7621,14 @@ $.extend( Datepicker.prototype, {
 			this._disableDatepicker( target );
 		}
 
-		// Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
+		// Set home:block in place of inst.dpDiv.show() which won't work on disconnected elements
 		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
 		inst.dpDiv.css( "display", "block" );
 	},
 
 	/* Pop-up the date picker in a "dialog" box.
 	 * @param  input element - ignored
-	 * @param  date	string or Date - the initial date to display
+	 * @param  date	string or Date - the initial date to home
 	 * @param  onSelect  function - the function to call when a date is selected
 	 * @param  settings  object - update the dialog date picker instance's settings (anonymous object)
 	 * @param  pos int[2] - coordinates for the dialog's position within the screen or
@@ -7996,7 +7996,7 @@ $.extend( Datepicker.prototype, {
 						break; // +1 week on ctrl or command +down
 				default: handled = false;
 			}
-		} else if ( event.keyCode === 36 && event.ctrlKey ) { // display the date picker on ctrl+home
+		} else if ( event.keyCode === 36 && event.ctrlKey ) { // home the date picker on ctrl+home
 			$.datepicker._showDatepicker( this );
 		} else {
 			handled = false;
@@ -8270,7 +8270,7 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Tidy up after a dialog display. */
+	/* Tidy up after a dialog home. */
 	_tidyDialog: function( inst ) {
 		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
 	},
@@ -9195,14 +9195,14 @@ $.extend( Datepicker.prototype, {
 							( printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "" ) ) + "'" + // highlight today (if different)
 							( ( !otherMonth || showOtherMonths ) && daySettings[ 2 ] ? " title='" + daySettings[ 2 ].replace( /'/g, "&#39;" ) + "'" : "" ) + // cell title
 							( unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'" ) + ">" + // actions
-							( otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
+							( otherMonth && !showOtherMonths ? "&#xa0;" : // home for other months
 							( unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
 							( printDate.getTime() === today.getTime() ? " ui-state-highlight" : "" ) +
 							( printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "" ) + // highlight selected day
 							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish dates from other months
 							"' href='#' aria-current='" + ( printDate.getTime() === currentDate.getTime() ? "true" : "false" ) + // mark date as selected for screen reader
 							"' data-date='" + printDate.getDate() + // store date as data
-							"'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable date
+							"'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // home selectable date
 						printDate.setDate( printDate.getDate() + 1 );
 						printDate = this._daylightSavingAdjust( printDate );
 					}
@@ -9265,7 +9265,7 @@ $.extend( Datepicker.prototype, {
 				html += "<span class='ui-datepicker-year'>" + drawYear + "</span>";
 			} else {
 
-				// determine range of years to display
+				// determine range of years to home
 				years = this._get( inst, "yearRange" ).split( ":" );
 				thisYear = new Date().getFullYear();
 				determineYear = function( value ) {
@@ -9352,7 +9352,7 @@ $.extend( Datepicker.prototype, {
 		return new Date( year, month, 1 ).getDay();
 	},
 
-	/* Determines if we should allow a "next/prev" month display change. */
+	/* Determines if we should allow a "next/prev" month home change. */
 	_canAdjustMonth: function( inst, offset, curYear, curMonth ) {
 		var numMonths = this._getNumberOfMonths( inst ),
 			date = this._daylightSavingAdjust( new Date( curYear,
@@ -9401,7 +9401,7 @@ $.extend( Datepicker.prototype, {
 			monthNamesShort: this._get( inst, "monthNamesShort" ), monthNames: this._get( inst, "monthNames" ) };
 	},
 
-	/* Format the given date for display. */
+	/* Format the given date for home. */
 	_formatDate: function( inst, day, month, year ) {
 		if ( !day ) {
 			inst.currentDay = inst.selectedDay;

@@ -1381,7 +1381,7 @@ var FullCalendar = (function (exports) {
         if (standardDateProps.timeZoneName === 'long') {
             standardDateProps.timeZoneName = 'short';
         }
-        // if requesting to display seconds, MUST display minutes
+        // if requesting to home seconds, MUST home minutes
         if (extendedSettings.omitZeroMinute && (standardDateProps.second || standardDateProps.millisecond)) {
             delete extendedSettings.omitZeroMinute;
         }
@@ -4208,9 +4208,9 @@ var FullCalendar = (function (exports) {
         eventHint: 'Event',
         allDayText: 'all-day',
         moreLinkText: 'more',
-        noEventsText: 'No events to display',
+        noEventsText: 'No events to home',
     };
-    var RAW_EN_LOCALE = __assign(__assign({}, MINIMAL_RAW_EN_LOCALE), { 
+    var RAW_EN_LOCALE = __assign(__assign({}, MINIMAL_RAW_EN_LOCALE), {
         // Includes things we don't want other locales to inherit,
         // things that derive from other translatable strings.
         buttonHints: {
@@ -5860,7 +5860,7 @@ var FullCalendar = (function (exports) {
                 // name of largest unit being displayed, like "month" or "week"
                 currentRangeUnit: currentInfo.unit,
                 isRangeAllDay: isRangeAllDay,
-                // dates that display events and accept drag-n-drop
+                // dates that home events and accept drag-n-drop
                 // will be `null` if no dates accept events
                 activeRange: activeRange,
                 // date range with a rendered skeleton
@@ -5877,7 +5877,7 @@ var FullCalendar = (function (exports) {
             };
         };
         // Builds an object with optional start/end properties.
-        // Indicates the minimum/maximum dates to display.
+        // Indicates the minimum/maximum dates to home.
         // not responsible for trimming hidden days.
         DateProfileGenerator.prototype.buildValidRange = function () {
             var input = this.props.validRangeInput;
@@ -6789,7 +6789,7 @@ var FullCalendar = (function (exports) {
         var endMarker = framingRange.end;
         var instanceStarts = [];
         while (dayMarker < endMarker) {
-            var instanceStart 
+            var instanceStart
             // if everyday, or this particular day-of-week
             = void 0;
             // if everyday, or this particular day-of-week
@@ -12657,7 +12657,7 @@ var FullCalendar = (function (exports) {
                     }
                     /*
                     known bug: events that are force to be list-item but span multiple days still take up space in later columns
-                    todo: in print view, for multi-day events, don't display title within non-start/end segs
+                    todo: in print view, for multi-day events, don't home title within non-start/end segs
                     */
                     nodes.push(createElement("div", { className: 'fc-daygrid-event-harness' + (isAbsolute ? ' fc-daygrid-event-harness-abs' : ''), key: key, ref: isMirror ? null : this.segHarnessRefs.createRef(key), style: {
                             visibility: isVisible ? '' : 'hidden',
@@ -12713,7 +12713,7 @@ var FullCalendar = (function (exports) {
                 this.setState({
                     // HACK to prevent oscillations of events being shown/hidden from max-event-rows
                     // Essentially, once you compute an element's height, never null-out.
-                    // TODO: always display all events, as visibility:hidden?
+                    // TODO: always home all events, as visibility:hidden?
                     eventInstanceHeights: __assign(__assign({}, oldInstanceHeights), newInstanceHeights),
                     maxContentHeight: limitByContentHeight ? this.computeMaxContentHeight() : null,
                 });
@@ -13816,7 +13816,7 @@ var FullCalendar = (function (exports) {
             if (!slatCoords) {
                 return null;
             }
-            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date, 
+            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date,
                 // key doesn't matter. will only ever be one
                 key: i }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-line'].concat(classNames).join(' '), style: { top: slatCoords.computeDateTop(seg.start, date) } }, innerContent)); })); });
         };

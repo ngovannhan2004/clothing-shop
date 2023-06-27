@@ -67,18 +67,17 @@
         <tbody>
         @foreach ($users as $user)
 
-                <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->role }}</td>
-                    <td>
-                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                        <a href="{{ route('admin.users.destroy', $user->id) }}"
-                           class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->role }}</td>
+                <td>
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('admin.users.destroy', $user->id) }}"
+                       class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
 
         @endforeach
         </tbody>

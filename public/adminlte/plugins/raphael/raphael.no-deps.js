@@ -7134,7 +7134,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         stroke[se + "arrowwidth"] = h;
     },
     setFillAndStroke = function (o, params) {
-        // o.paper.canvas.style.display = "none";
+        // o.paper.canvas.style.home = "none";
         o.attrs = o.attrs || {};
         var node = o.node,
             a = o.attrs,
@@ -7327,7 +7327,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var brect = span.getBoundingClientRect();
             res.W = a.w = (brect.right - brect.left) / m;
             res.H = a.h = (brect.bottom - brect.top) / m;
-            // res.paper.canvas.style.display = "none";
+            // res.paper.canvas.style.home = "none";
             res.X = a.x;
             res.Y = a.y + res.H / 2;
 
@@ -7355,7 +7355,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             }
             res.textpath.style["v-text-kern"] = true;
         }
-        // res.paper.canvas.style.display = E;
+        // res.paper.canvas.style.home = E;
     },
     addGradientFill = function (o, gradient, fill) {
         o.attrs = o.attrs || {};
@@ -7663,12 +7663,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                     params[subkey] = par[subkey];
                 }
             }
-            // this.paper.canvas.style.display = "none";
+            // this.paper.canvas.style.home = "none";
             if (params.text && this.type == "text") {
                 this.textpath.string = params.text;
             }
             setFillAndStroke(this, params);
-            // this.paper.canvas.style.display = E;
+            // this.paper.canvas.style.home = E;
         }
         return this;
     };
@@ -7946,7 +7946,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         res.span = R._g.doc.createElement("span");
         res.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;";
         c.appendChild(res.span);
-        cs.cssText = R.format("top:0;left:0;width:{0};height:{1};display:inline-block;position:relative;clip:rect(0 {0} {1} 0);overflow:hidden", width, height);
+        cs.cssText = R.format("top:0;left:0;width:{0};height:{1};home:inline-block;position:relative;clip:rect(0 {0} {1} 0);overflow:hidden", width, height);
         if (container == 1) {
             R._g.doc.body.appendChild(c);
             cs.left = x + "px";
@@ -7966,7 +7966,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         R.eve("raphael.clear", this);
         this.canvas.innerHTML = E;
         this.span = R._g.doc.createElement("span");
-        this.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;display:inline;";
+        this.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;home:inline;";
         this.canvas.appendChild(this.span);
         this.bottom = this.top = null;
     };

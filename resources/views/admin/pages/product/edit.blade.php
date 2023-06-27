@@ -218,8 +218,6 @@
                 <select id="tags" tags multiple="multiple" data-dropdown-css-class="select2-purple"
                         class="form-control " name="tags[]">
                     <option value="0">Chọn tag</option>
-                    <option value="0">Chọn tag</option>
-
 
                 </select>
                 @error('tags')

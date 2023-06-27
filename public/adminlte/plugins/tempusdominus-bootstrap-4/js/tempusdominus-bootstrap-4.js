@@ -2546,7 +2546,7 @@ var TempusDominusBootstrap4 = function ($) {
       currentDate = this._viewDate.clone().startOf('M').startOf('w').startOf('d');
 
       for (i = 0; i < 42; i++) {
-        //always display 42 days (should show 6 weeks)
+        //always home 42 days (should show 6 weeks)
         if (currentDate.weekday() === 0) {
           row = $('<tr>');
 

@@ -11,7 +11,17 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
+
+
         return true;
+    }
+    public function rules(): array
+    {
+        return [
+            'name' => 'required|unique:users,name',
+            'email' => 'required|unique:users,email',
+        ];
+
     }
 
     /**
@@ -19,10 +29,13 @@ class StoreUserRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules(): array
+    public function messages(): array
     {
         return [
-            //
+            'name.required' => 'Vui lòng nhập tên.',
+            'name.unique' => 'User này đã tồn tại.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.unique' => 'Email này đã tồn tại.',
         ];
     }
 }

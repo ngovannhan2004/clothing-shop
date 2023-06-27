@@ -38,7 +38,7 @@
 
 <body>
 <div id="register">
-    <h3 class="text-center text-white pt-5">Login form</h3>
+    <h3 class="text-center text-white pt-5">Register form</h3>
     <div class="container">
         <div id="register-row" class="row justify-content-center align-items-center">
             <div id="register-column" class="col-md-6">
@@ -52,13 +52,17 @@
                             <input type="text" name="email" id="email" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label for="email" class="text-info">Email:</label><br>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label for="password" class="text-info">Password:</label><br>
                             <input type="password" name="password" id="password" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label> Chọn vai trò</label>
-                            <select id="#category" class="form-control select2bs4" name="role">
+                            <select id="#role" class="form-control select2bs4" name="role">
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
                             </select>
@@ -71,6 +75,7 @@
                             <a href="#" class="text-info">Register here</a>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

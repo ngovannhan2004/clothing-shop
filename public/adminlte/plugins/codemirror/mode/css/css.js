@@ -586,7 +586,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
   ], nonStandardPropertyKeywords = keySet(nonStandardPropertyKeywords_);
 
   var fontProperties_ = [
-    "font-display", "font-family", "src", "unicode-range", "font-variant",
+    "font-home", "font-family", "src", "unicode-range", "font-variant",
      "font-feature-settings", "font-stretch", "font-weight", "font-style"
   ], fontProperties = keySet(fontProperties_);
 
@@ -669,11 +669,11 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "local", "logical", "loud", "lower", "lower-alpha", "lower-armenian",
     "lower-greek", "lower-hexadecimal", "lower-latin", "lower-norwegian",
     "lower-roman", "lowercase", "ltr", "luminosity", "malayalam", "manipulation", "match", "matrix", "matrix3d",
-    "media-controls-background", "media-current-time-display",
+    "media-controls-background", "media-current-time-home",
     "media-fullscreen-button", "media-mute-button", "media-play-button",
     "media-return-to-realtime-button", "media-rewind-button",
     "media-seek-back-button", "media-seek-forward-button", "media-slider",
-    "media-sliderthumb", "media-time-remaining-display", "media-volume-slider",
+    "media-sliderthumb", "media-time-remaining-home", "media-volume-slider",
     "media-volume-slider-container", "media-volume-sliderthumb", "medium",
     "menu", "menulist", "menulist-button", "menulist-text",
     "menulist-textfield", "menutext", "message-box", "middle", "min-intrinsic",

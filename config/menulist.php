@@ -47,7 +47,7 @@ return [
 
 // Menu list
     [
-        'name' => 'Menu List',
+        'name' => 'Menus ',
         'icon' => 'fas fa-folder',
         'value' => 'menus',
         "children" => [
@@ -69,7 +69,7 @@ return [
         ]
     ],
     [
-        'name' => 'User List',
+        'name' => 'Users ',
         'icon' => 'fas fa-folder',
         'value' => 'users',
         "children" => [

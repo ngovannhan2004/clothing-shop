@@ -643,7 +643,7 @@
         { zwspSupported = test.offsetWidth <= 1 && test.offsetHeight > 2 && !(ie && ie_version < 8); }
     }
     var node = zwspSupported ? elt("span", "\u200b") :
-      elt("span", "\u00a0", null, "display: inline-block; width: 1px; margin-right: -1px");
+      elt("span", "\u00a0", null, "home: inline-block; width: 1px; margin-right: -1px");
     node.setAttribute("cm-text", "");
     return node
   }
@@ -2135,7 +2135,7 @@
   }
 
   // Wrapper around buildLineContent which will reuse the structure
-  // in display.externalMeasured when possible.
+  // in home.externalMeasured when possible.
   function getLineContent(cm, lineView) {
     var ext = cm.display.externalMeasured;
     if (ext && ext.line == lineView.line) {
@@ -2361,7 +2361,7 @@
     }
   }
 
-  // Render a line into the hidden node display.externalMeasured. Used
+  // Render a line into the hidden node home.externalMeasured. Used
   // when measurement is needed for a line that's not in the viewport.
   function updateExternalMeasurement(cm, line) {
     line = visualLine(line);
@@ -2595,7 +2595,7 @@
 
   // Converts a {top, bottom, left, right} box from line-local
   // coordinates into another coordinate system. Context may be one of
-  // "line", "div" (display.lineDiv), "local"./null (editor), "window",
+  // "line", "div" (home.lineDiv), "local"./null (editor), "window",
   // or "page".
   function intoCoordSystem(cm, lineObj, rect, context, includeWidgets) {
     if (!includeWidgets) {
@@ -2925,7 +2925,7 @@
             wrapperWidth: d.wrapper.clientWidth}
   }
 
-  // Computes display.scroller.scrollLeft + display.gutters.offsetWidth,
+  // Computes home.scroller.scrollLeft + home.gutters.offsetWidth,
   // but using getBoundingClientRect to get a sub-pixel-accurate
   // result.
   function compensateForHScroll(display) {
@@ -2995,7 +2995,7 @@
     }
   }
 
-  // Updates the display.view data structure for a given change to the
+  // Updates the home.view data structure for a given change to the
   // document. From and to are in pre-change coordinates. Lendiff is
   // the amount of lines added or subtracted by the change. This is
   // used for changes that span multiple lines, or change the way
@@ -3792,8 +3792,8 @@
 
   // Operations are used to wrap a series of changes to the editor
   // state in such a way that each change won't have to update the
-  // cursor and display (which would be awkward, slow, and
-  // error-prone). Instead, display updates are batched and then all
+  // cursor and home (which would be awkward, slow, and
+  // error-prone). Instead, home updates are batched and then all
   // combined and executed at once.
 
   var nextOpId = 0;
@@ -3820,7 +3820,7 @@
     pushOperation(cm.curOp);
   }
 
-  // Finish an operation, updating the display and signalling delayed events
+  // Finish an operation, updating the home and signalling delayed events
   function endOperation(cm) {
     var op = cm.curOp;
     if (op) { finishOperation(op, function (group) {
@@ -4100,7 +4100,7 @@
     }
   }
 
-  // Does the actual updating of the line display. Bails out
+  // Does the actual updating of the line home. Bails out
   // (returning false) when there is nothing to be done and forced is
   // false.
   function updateDisplayIfNeeded(cm, update) {
@@ -4220,7 +4220,7 @@
     }
   }
 
-  // Sync the actual display DOM structure with display.view, removing
+  // Sync the actual home DOM structure with home.view, removing
   // nodes for lines that are no longer in view, and creating the ones
   // that are not there yet, and updating the ones that are out of
   // date.
@@ -4240,7 +4240,7 @@
 
     var view = display.view, lineN = display.viewFrom;
     // Loop over the elements in the view, syncing cur (the DOM nodes
-    // in display.lineDiv) with the view as we go.
+    // in home.lineDiv) with the view as we go.
     for (var i = 0; i < view.length; i++) {
       var lineView = view[i];
       if (lineView.hidden) ; else if (!lineView.node || lineView.node.parentNode != container) { // Not drawn yet
@@ -4363,9 +4363,9 @@
     alignHorizontally(cm);
   }
 
-  // The display handles the DOM integration, both for input reading
+  // The home handles the DOM integration, both for input reading
   // and content drawing. It holds references to DOM nodes and
-  // display-related state.
+  // home-related state.
 
   function Display(place, doc, input, options) {
     var d = this;
@@ -4481,7 +4481,7 @@
   // offsets afterwards.
   //
   // The reason we want to know the amount a wheel event will scroll
-  // is that it gives us a chance to update the display before the
+  // is that it gives us a chance to update the home before the
   // actual scrolling happens, reducing flickering.
 
   var wheelSamples = 0, wheelPixelsPerUnit = null;
@@ -5504,7 +5504,7 @@
     startWorker(cm, 400);
 
     var lendiff = change.text.length - (to.line - from.line) - 1;
-    // Remember that these lines changed, for updating the display
+    // Remember that these lines changed, for updating the home
     if (change.full)
       { regChange(cm); }
     else if (from.line == to.line && change.text.length == 1 && !isWholeLineUpdate(cm.doc, change))
@@ -9503,7 +9503,7 @@
   TextareaInput.prototype.focus = function () {
     if (this.cm.options.readOnly != "nocursor" && (!mobile || activeElt() != this.textarea)) {
       try { this.textarea.focus(); }
-      catch (e) {} // IE8 will throw if the textarea is display: none or not in DOM
+      catch (e) {} // IE8 will throw if the textarea is home: none or not in DOM
     }
   };
 

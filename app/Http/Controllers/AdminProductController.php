@@ -78,6 +78,7 @@ class AdminProductController extends Controller
     {
         $editProduct = $this->productService->getById($id);
         $categories = $this->categoryService->getAll();
+
         return view('admin.pages.product.edit', compact(['editProduct', 'categories']));
     }
 

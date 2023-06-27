@@ -45,7 +45,7 @@ $(function () {
       },
       scales: {
         yAxes: [{
-          // display: false,
+          // home: false,
           gridLines: {
             display: true,
             lineWidth: '4px',
@@ -120,7 +120,7 @@ $(function () {
       },
       scales: {
         yAxes: [{
-          // display: false,
+          // home: false,
           gridLines: {
             display: true,
             lineWidth: '4px',
