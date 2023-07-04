@@ -10,8 +10,7 @@
                             <div class="footer-logo">
                                 <a href="{{ route('home') }}"><img src="{{asset('home/assets/images/logo/logo-white.png')}}  " alt=""></a>
                             </div>
-                            <p class="about-text">Lorem ipsum dolor sit amet consectet adipisicing elit, sed do
-                                eiusmod templ incididunt ut labore et dolore magnaol aliqua Ut enim ad minim.
+                            <p class="about-text">“Shopping paradise - where you can satisfy your passion at the right time. Do not hesitate any longer, come to our website to satisfy your shopping passion.”
                             </p>
                             <ul class="link-follow">
                                 <li>
@@ -63,10 +62,11 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="{{ route('about') }}"> About </a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="blog-grid.html">Blog</a></li>
-                                        <li class="li"><a class="single-link" href="#">Speakers</a></li>
+                                        <li class="li"><a class="single-link" href="{{ route('shop_left_sidebar') }}">Blog</a></li>
+                                        <li class="li"><a class="single-link" href="#">Facebook
+                                            </a></li>
                                         <li class="li"><a class="single-link" href="{{ route('contact') }}">Contact</a></li>
-                                        <li class="li"><a class="single-link" href="#">Tricket</a></li>
+                                        <li class="li"><a class="single-link" href="#">Instagram</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -100,10 +100,11 @@
                             <h4 class="footer-herading">Store Information.</h4>
                             <div class="footer-links">
                                 <!-- News letter area -->
-                                <p class="address">2005 Your Address Goes Here. <br>
-                                    896, Address 10010, HGJ</p>
-                                <p class="phone">Phone/Fax:<a href="tel:0123456789">0123456789</a></p>
-                                <p class="mail">Email:<a href="mailto:demo@example.com">demo@example.com</a></p>
+                                <p class="address">470 Tran Dai Nghia. <br>
+                                    Hoa Quy, Ngu Hanh Son, Da Nang.
+                                </p>
+                                <p class="phone">Phone/Fax:<a href="tel:0123456789">0325132145</a></p>
+                                <p class="mail">Email:<a href="mailto:demo@example.com">ABC.22IT@vku.udn.vn</a></p>
                                 <img src="{{asset('home/assets/images/icons/payment.png')}}" alt="" class="payment-img img-fulid">
 
                                 <!-- News letter area  End -->

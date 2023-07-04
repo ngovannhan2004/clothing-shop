@@ -59,7 +59,7 @@
                             </div>
                             <div class="info-box">
                                 <h5 class="title" >Phone:</h5>
-                                <p><a href="tel:0123456789">0765501203</a></p>
+                                <p><a href="tel:0123456789">0325132145</a></p>
                             </div>
                         </div>
                         <div class="single-contact">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="info-box">
                                 <h5 class="title" >Email:</h5>
-                                <p><a href="mailto:demo@example.com">demo@example.com</a></p>
+                                <p><a href="mailto:demo@example.com">ABC.22IT@vku.udn.vn</a></p>
                             </div>
                         </div>
                         <div class="single-contact">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="info-box">
                                 <h5 class="title" >Address:</h5>
-                                <p>Your address goes here</p>
+                                <p>470 Tran Dai Nghia, Hoa Quy, Ngu Hanh Son, Da Nang</p>
                             </div>
                         </div>
                     </div>
@@ -86,8 +86,7 @@
                     <div class="contact-form">
                         <div class="contact-title mb-30">
                             <h2 class="title" data-aos="fade-up" data-aos-delay="200">Leave a Message</h2>
-                            <p>There are many variations of passages of Lorem Ipsum available but the
-                                suffered alteration in some form.</p>
+                            <p>“If you have any questions and want to be answered, don't hesitate to send us an email or call the phone number below so that we can answer your questions accurately and quickly.”</p>
                         </div>
                         <form class="contact-form-style" id="contact-form" action="{{asset('home/assets/php/mail.php')}}"  method="post">
                             <div class="row">
@@ -119,13 +118,14 @@
         <div class="mapouter">
             <div class="gmap_canvas">
                 <iframe id="gmap_canvas"
-                        src="https://maps.google.com/maps?q=Cầu%20Rồng,%20Đà%20Nẵng&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        src="https://maps.google.com/maps?q=470%20Tran%20Dai%20Nghia,%20Hoa%20Quy,%20Ngu%20Hanh%20Son,%20Da%20Nang&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 <a href="https://sites.google.com/view/maps-api-v2/mapv2"></a>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- map Area End -->
 

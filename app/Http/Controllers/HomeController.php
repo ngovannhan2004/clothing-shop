@@ -112,9 +112,10 @@ class HomeController extends Controller
 
     public function shop_sidebar()
     {
+        $tags = $this->categoryService->getAll();
         $products = $this->productService->getAll();
         $categories = $this->categoryService->getAll();
-        return view('home.pages.shop_left_sidebar', compact(['products', 'categories']));
+        return view('home.pages.shop_left_sidebar', compact(['products', 'categories', 'tags']));
     }
 
     public function compare()

@@ -223,15 +223,11 @@
                     <div class="sidebar-widget">
                         <h4 class="sidebar-title">Category</h4>
                         <div class="sidebar-widget-category">
+                            @foreach($products as $product)
                             <ul>
-                                <li><a href="#" class="selected m-0">Accesasories <span>(6)</span> </a></li>
-                                <li><a href="#" class="">Computer <span>(4)</span> </a></li>
-                                <li><a href="#" class="">Covid-19 <span>(2)</span> </a></li>
-                                <li><a href="#" class="">Electronics <span>(6)</span> </a></li>
-                                <li><a href="#" class="">Frame Sunglasses <span>(12)</span> </a></li>
-                                <li><a href="#" class="">Furniture <span>(7)</span> </a></li>
-                                <li><a href="#" class="">Genuine Leather <span>(9)</span> </a></li>
+                                <li><a href="#" class="selected m-0">{{$product->category->name}} </a></li>
                             </ul>
+                            @endforeach
                         </div>
                     </div>
                     <!-- Sidebar single item -->
@@ -262,23 +258,25 @@
                     <div class="sidebar-widget tag">
                         <h4 class="sidebar-title">Tags</h4>
                         <div class="sidebar-widget-tag">
+
                             <ul>
-                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#"> Dress</a></li>
                                 <li><a href="#">Organic</a></li>
                                 <li><a href="#">Old Fashion</a></li>
                                 <li><a href="#">Men</a></li>
                                 <li><a href="#">Fashion</a></li>
                                 <li><a href="#">Dress</a></li>
                             </ul>
+
                         </div>
                     </div>
                     <!-- Sidebar single item -->
                     <div class="sidebar-widget-image">
                         <div class="single-banner">
-                            <img src="assets/images/banner/2.jpg')}}" alt="">
+                            <img src="{{asset('home/assets/images/banner/2.jpg')}}" alt="">
                             <div class="item-disc">
                                 <h2 class="title">#bestsellers</h2>
-                                <a href="single-product-variable.html" class="shop-link">Shop Now</a>
+                                <a href="{{ route('shop_4_column') }}" class="shop-link">Shop Now</a>
                             </div>
                         </div>
                     </div>

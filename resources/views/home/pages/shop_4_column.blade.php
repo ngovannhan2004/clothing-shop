@@ -160,7 +160,7 @@
                                                     </div>
                                                     <div class="box-inner">
                                                             <span class="price">
-                                                                <span class="new">$38.50</span>
+                                                                <span class="new">${{$product->price}}</span>
                                                             </span>
                                                         <div class="actions">
                                                             <a href="{{ route('wishlist') }}" class="action wishlist"
