@@ -60,7 +60,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.categories.store') }}" method="post">
+        <form action="{{ route('admin.categories.store') }}" method="post">
         @csrf
         <div class="col-md-6">
             <div class="form-group ">

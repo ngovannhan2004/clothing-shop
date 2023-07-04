@@ -60,6 +60,8 @@ return [
                 'image/gif',
                 'application/pdf',
                 'text/plain',
+                'image/svg+xml',
+                'image/webp',
             ],
         ],
         'image' => [
@@ -74,6 +76,8 @@ return [
                 'image/pjpeg',
                 'image/png',
                 'image/gif',
+                'image/webp',
+                'image/svg+xml',
             ],
         ],
     ],

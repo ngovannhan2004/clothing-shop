@@ -4,7 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminCategoryController;
 
@@ -25,13 +27,35 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 
 
-Route::get('/login', [AdminController::class, 'login'])->name('login');
-Route::post('/login', [AdminController::class, 'postLogin'])->name('postLogin');
+Route::get('/loginAdmin', [AdminController::class, 'login'])->name('login');
+Route::post('/loginAdmin', [AdminController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 Route::get('/register', [AdminController::class, 'register'])->name('register');
 
 
-Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::post('/register', [HomeController::class, 'register'])->name('register');
+Route::post('/login', [HomeController::class, 'postLogin'])->name('postLogin');
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+
+
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/account', [HomeController::class, 'account'])->name('account');
+Route::get('/product_single', [HomeController::class, 'product'])->name('product_single');
+Route::get('/shop_column', [HomeController::class, 'shop_column'])->name('shop_4_column');
+Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+Route::get('/cart/add', [HomeController::class, 'addToCart'])->name('addToCart');
+Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
+Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
+Route::get('/shop_sidebar', [HomeController::class, 'shop_sidebar'])->name('shop_left_sidebar');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/product_slider', [HomeController::class, 'product_slider'])->name('product_slider');
+Route::get('/product_variable', [HomeController::class, 'product_variable'])->name('product_variable');
+Route::get('/product_gallery', [HomeController::class, 'product_gallery'])->name('product_gallery');
+Route::get('/product-details/{slug}', [HomeController::class, 'product_detail'])->name('product_details');
+Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+Route::get('/404', [HomeController::class, 'error'])->name('error');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], function () {

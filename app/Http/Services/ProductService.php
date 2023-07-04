@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Support\Str;
 
@@ -11,12 +12,14 @@ class ProductService implements DAOInterface
     private Product $product;
     private ImageService $imageService;
     private TagService $tagService;
+    private Image $image;
 
-    public function __construct(Product $product, ImageService $imageService, TagService $tagService)
+    public function __construct(Product $product, ImageService $imageService, TagService $tagService, Image  $image)
     {
         $this->product = $product;
         $this->imageService = $imageService;
         $this->tagService = $tagService;
+        $this->image = $image;
     }
 
     function getAll()
@@ -32,6 +35,10 @@ class ProductService implements DAOInterface
     function getById($id)
     {
         return $this->product->find($id);
+    }
+
+    function findBySlug($slug){
+        return $this->product->where('slug', $slug)->first();
     }
 
     function getByName($name)
@@ -75,19 +82,16 @@ class ProductService implements DAOInterface
     public function delete($id)
     {
         // Tìm danh mục bằng ID
-        $product = Product::find($id);
-
-        if ($product) {
-            // Xóa danh mục
-            $product->delete();
-
-            // Tùy chọn, bạn có thể thực hiện các hành động bổ sung sau khi xóa,
-            // như xóa các bản ghi liên quan hoặc cập nhật dữ liệu khác.
-
-            return redirect()->back()->with('success', 'Xóa sản phẩm thành công.');
-        } else {
-            return redirect()->back()->with('error', 'Không tìm thấy sản phẩm.');
+        $productDeleted = $this->product->find($id);
+        if ($productDeleted) {
+            $productDeleted->delete();
         }
+        else {
+            return redirect()->back()->with('error', 'Không tìm thấy sản phẩm');
+        }
+        return redirect()->back()->with('success', 'Xóa sản phẩm thành công');
+
+
     }
 
     function search($value)

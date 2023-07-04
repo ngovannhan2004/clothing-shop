@@ -8,7 +8,7 @@
                     <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
                         <div class="single-wedge">
                             <div class="footer-logo">
-                                <a href="index.html"><img src="{{asset('home/assets/images/logo/logo-white.png')}}" alt=""></a>
+                                <a href="{{ route('home') }}"><img src="{{asset('home/assets/images/logo/logo-white.png')}}  " alt=""></a>
                             </div>
                             <p class="about-text">Lorem ipsum dolor sit amet consectet adipisicing elit, sed do
                                 eiusmod templ incididunt ut labore et dolore magnaol aliqua Ut enim ad minim.
@@ -46,7 +46,7 @@
                                             </a></li>
                                         <li class="li"><a class="single-link" href="#">Helpline</a></li>
                                         <li class="li"><a class="single-link" href="#">Courses</a></li>
-                                        <li class="li"><a class="single-link" href="about.html">About</a></li>
+                                        <li class="li"><a class="single-link" href="{{ route('about') }}">About</a></li>
                                         <li class="li"><a class="single-link" href="#">Event</a></li>
                                     </ul>
                                 </div>
@@ -61,11 +61,11 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="about.html"> About </a>
+                                        <li class="li"><a class="single-link" href="{{ route('about') }}"> About </a>
                                         </li>
                                         <li class="li"><a class="single-link" href="blog-grid.html">Blog</a></li>
                                         <li class="li"><a class="single-link" href="#">Speakers</a></li>
-                                        <li class="li"><a class="single-link" href="contact.html">Contact</a></li>
+                                        <li class="li"><a class="single-link" href="{{ route('contact') }}">Contact</a></li>
                                         <li class="li"><a class="single-link" href="#">Tricket</a></li>
                                     </ul>
                                 </div>
@@ -80,12 +80,12 @@
                             <div class="footer-links">
                                 <div class="footer-row">
                                     <ul class="align-items-center">
-                                        <li class="li"><a class="single-link" href="index.html">Jesco</a>
+                                        <li class="li"><a class="single-link" href="{{ route('home') }}">Jesco</a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="shop-left-sidebar.html">Shop</a>
+                                        <li class="li"><a class="single-link" href="{{ route('shop_left_sidebar') }}">Shop</a>
                                         </li>
-                                        <li class="li"><a class="single-link" href="contact.html">Contact us</a></li>
-                                        <li class="li"><a class="single-link" href="login.html">Log in</a></li>
+                                        <li class="li"><a class="single-link" href="{{ route('contact') }}">Contact us</a></li>
+                                        <li class="li"><a class="single-link" href="{{ route('login') }}">Log in</a></li>
                                         <li class="li"><a class="single-link" href="#">Help</a></li>
                                     </ul>
                                 </div>

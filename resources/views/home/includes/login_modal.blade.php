@@ -8,9 +8,15 @@
                     <div class="login-content">
                         <h2>Log in</h2>
                         <h3>Log in your account</h3>
-                        <form action="#">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
+                        <form action="{{ route('login') }}" method="post">
+                            @csrf
+                            @if(session('message'))
+                                <div class="alert alert-warning">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                            <input type="text" name="email" placeholder="Name" />
+                            <input type="password" name="password" placeholder="Password" />
                             <div class="remember-forget-wrap">
                                 <div class="remember-wrap">
                                     <input type="checkbox">
@@ -21,9 +27,9 @@
                                     <a href="#">Forgot your password?</a>
                                 </div>
                             </div>
-                            <button type="button">Log in</button>
+                            <button type="submit"><span>Login</span></button>
                             <div class="member-register">
-                                <p> Not a member? <a href="login.html"> Register now</a></p>
+                                <p> Not a member? <a href="{{ route('login') }}"> Register now</a></p>
                             </div>
                         </form>
                     </div>
@@ -32,4 +38,5 @@
         </div>
     </div>
 </div>
+
 <!-- Login Modal End -->

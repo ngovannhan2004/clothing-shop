@@ -80,11 +80,12 @@
                                         Cart
                                     </button>
                                 </div>
+
                                 <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                    <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                                    <a href="{{ route('wishlist') }}"><i class="pe-7s-like"></i></a>
                                 </div>
                                 <div class="pro-details-compare-wishlist pro-details-compare">
-                                    <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>
+                                    <a href="{{ route('compare') }}"><i class="pe-7s-refresh-2"></i></a>
                                 </div>
                             </div>
                             <div class="pro-details-sku-info pro-details-same-style  d-flex">
