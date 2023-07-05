@@ -48,15 +48,28 @@ class ProductService implements DAOInterface
 
     function create($data)
     {
-        $product =  $this->product->create([
-            'name' => $data['name'],
-            'price' => $data['price'],
-            'feature_image_path' => $data['feature_image_path'],
-            'category_id' => $data['category_id'],
-            'content' => $data['content'],
-            'user_id' => $data['user_id'],
-            'slug' => Str::slug($data['name']),
-        ]);
+//        dd($data);
+//        $product =  $this->product->create([
+//            'name' => $data['name'],
+//            'price' => $data['price'],
+//            'feature_image_path' => $data['feature_image_path'],
+//            'category_id' => $data['category_id'],
+//            'content' => $data['content'],
+//            'user_id' => $data['user_id'],
+//            'slug' => Str::slug($data['name']),
+//        ]);
+
+        $product = new Product();
+        $product->name = $data['name'];
+        $product->price = $data['price'];
+        $product->feature_image_path = $data['feature_image_path'];
+        $product->category_id = $data['category_id'];
+        $product->content = $data['content'];
+        $product->user_id = $data['user_id'];
+        $product->slug = Str::slug($data['name']);
+        $product->save();
+
+
         $imageIds = $this->imageService->createMultiple($data['image_paths']);
         $tagIds = $this->tagService->createMultiple($data['tags']);
         $product->tags()->attach($tagIds);

@@ -2,73 +2,112 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Services\CartService;
+use App\Models\Cart;
+use App\Http\Requests\StoreCartRequest;
+use App\Http\Requests\UpdateCartRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    private CartService $cartService;
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService; // Initialize the $cartService property in the constructor
+    }
+
     public function index()
     {
-        // Lấy dữ liệu giỏ hàng từ session hoặc cơ sở dữ liệu
-        $cartItems = session('cart', []);
+        $carts = $this->cartService->getAll();
 
-        // Tính tổng giá trị giỏ hàng
-        $total = 0;
-        foreach ($cartItems as $cartItem) {
-            $total += $cartItem['quantity'] * $cartItem['price'];
-        }
-
-        // Truyền dữ liệu giỏ hàng và tổng giá trị vào view
-        return view('home.pages.cart', compact('cartItems', 'total'));
+        return view('admin.pages.cart', compact('carts'));
     }
 
-    public function add(Request $request, $productId)
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreCartRequest $request)
     {
-        $product = Product::find($productId);
+        $existingCartItem = $this->cartService->findCartItem($request->product_id, $request->user_id);
 
-        // Kiểm tra xem sản phẩm có tồn tại không
-        if (!$product) {
-            return redirect()->back()->with('error', 'Sản phẩm không tồn tại.');
-        }
-
-        // Lấy dữ liệu giỏ hàng từ session
-        $cartItems = session('cart', []);
-
-        // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-        if (array_key_exists($productId, $cartItems)) {
-            // Nếu đã có, tăng số lượng
-            $cartItems[$productId]['quantity'] += 1;
+        if ($existingCartItem) {
+            // Sản phẩm đã tồn tại trong giỏ hàng, tăng quantity
+            $existingCartItem->quantity += $request->quantity;
+            $existingCartItem->save();
         } else {
-            // Nếu chưa có, thêm sản phẩm vào giỏ hàng
-            $cartItems[$productId] = [
-                'name' => $product->name,
-                'price' => $product->price,
-                'quantity' => 1,
+            // Sản phẩm chưa tồn tại trong giỏ hàng, tạo mới
+            $data = [
+                'name' => ucfirst($request->name),
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'product_id' => $request->product_id,
+                'user_id' => $request->user_id
             ];
+            $this->cartService->create($data);
         }
 
-        // Lưu dữ liệu giỏ hàng vào session
-        session(['cart' => $cartItems]);
-
-        return redirect()->route('home.pages.cart')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
+        return redirect()->route('home.pages.cart')->with('success', 'Thêm sản phẩm thành công');
     }
 
-    public function remove(Request $request, $productId)
-    {
-        // Lấy dữ liệu giỏ hàng từ session
-        $cartItems = session('cart', []);
+    public function create($product_id, $quantity) {
+//        dd($product_id, $quantity);
+        $existingCartItem = $this->cartService->findCartItem($product_id, Auth::user()->id);
 
-        // Kiểm tra xem sản phẩm có trong giỏ hàng không
-        if (array_key_exists($productId, $cartItems)) {
-            // Nếu có, xóa sản phẩm khỏi giỏ hàng
-            unset($cartItems[$productId]);
-
-            // Lưu dữ liệu giỏ hàng vào session
-            session(['cart' => $cartItems]);
-
-            return redirect()->route('home.pages.cart')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
+        if ($existingCartItem) {
+            // Sản phẩm đã tồn tại trong giỏ hàng, tăng quantity
+            $existingCartItem->quantity += $quantity;
+            $existingCartItem->save();
+        } else {
+            // Sản phẩm chưa tồn tại trong giỏ hàng, tạo mới
+            $data = [
+                'price' => 0,
+                'quantity' => $quantity,
+                'product_id' => $product_id,
+                'user_id' => Auth::user()->id
+            ];
+            $this->cartService->create($data);
         }
 
-        return redirect()->route('home.pages.cart')->with('error', 'Sản phẩm không tồn tại trong giỏ hàng.');
+        return redirect()->back();
+    }
+
+
+
+    public function update(UpdateCartRequest $request, Cart $cart, $id)
+    {
+        $existCart = $this->cartService->getById($id);
+        if (empty($existCart)) {
+            return redirect()->back();
+        }
+        $data = [
+            'name' => ucfirst($request->name),
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'product_id' => $request->product_id,
+            'user_id' => $request->user_id
+        ];
+
+        $this->cartService->update($data, $id);
+
+        $updatedCart = $this->cartService->getById($id);
+        if (!empty($updatedCart) && isset($updatedCart->quantity)) {
+            $updatedCart->quantity += $request->quantity;
+            $updatedCart->save();
+        }
+
+        return redirect()->back();
+    }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $this->cartService->delete($id);
+        return redirect()->back()->with('success', 'Xóa sản phẩm thành công');
     }
 }

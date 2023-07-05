@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomUserController;
 use Illuminate\Support\Facades\Route;
@@ -33,19 +34,17 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 Route::get('/register', [AdminController::class, 'register'])->name('register');
 
 
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::post('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/login', [HomeController::class, 'postLogin'])->name('postLogin');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-
-
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/account', [HomeController::class, 'account'])->name('account');
 Route::get('/product_single', [HomeController::class, 'product'])->name('product_single');
 Route::get('/shop_column', [HomeController::class, 'shop_column'])->name('shop_4_column');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
-Route::get('/cart/add', [HomeController::class, 'addToCart'])->name('addToCart');
 Route::get('/wishlist', [HomeController::class, 'wishlist'])->name('wishlist');
 Route::get('/compare', [HomeController::class, 'compare'])->name('compare');
 Route::get('/shop_sidebar', [HomeController::class, 'shop_sidebar'])->name('shop_left_sidebar');
@@ -56,6 +55,14 @@ Route::get('/product_gallery', [HomeController::class, 'product_gallery'])->name
 Route::get('/product-details/{slug}', [HomeController::class, 'product_detail'])->name('product_details');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/404', [HomeController::class, 'error'])->name('error');
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    Route::get('/addCart/{product_id}/{quantity}', [CartController::class, 'create'])->name('cart.add');
+    Route::get('/update/{id}', [CartController::class, 'update'])->name('update');
+    Route::get('/destroy/{id}', [CartController::class, 'destroy'])->name('destroy');
+    Route::get('/shop_column/addCart/{product_id}/{quantity}', [CartController::class, 'create'])->name('shop_column.cart.add');
+    Route::get('/shop_siderbar/addCart/{product_id}/{quantity}', [CartController::class, 'create'])->name('shop_siderbar.cart.add');
+});
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], function () {

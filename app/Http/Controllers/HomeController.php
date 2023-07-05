@@ -7,6 +7,7 @@ use App\Http\Services\ProductService;
 use App\Http\Services\UserService;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -47,7 +48,7 @@ class HomeController extends Controller
     }
     public function logout(){
         auth()->logout();
-        return redirect()->route('home.layouts.login');
+        return redirect()->route('login');
 
     }
     public function register(Request $request)
@@ -163,6 +164,7 @@ class HomeController extends Controller
     public function error(){
         return view('home.pages.404');
     }
+
 
 
 }

@@ -100,11 +100,26 @@
                     <p class="mt-30px mb-0">{{$product->content}} </p>
                     <div class="pro-details-quality">
                         <div class="cart-plus-minus">
-                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                            <input class="cart-plus-minus-box"  type="number" id="quantity" name="qtybutton" value="1"  />
                         </div>
+                        <script>
+                            function addCart(product_id){
+                                console.log("add cart");
+                                let quantity = document.getElementById("quantity").value;
+                                console.log(quantity);
+                                $.ajax({
+                                    type: "GET",
+                                    url: "../addCart/" + product_id + "/" + quantity,
+                                    success: function (data) {
+                                        window.location.reload();
+                                    }
+                                })
+                            }
+                        </script>
                         <div class="pro-details-cart">
-                            <button class="add-cart" href="#"> Add To
-                                Cart</button>
+                            <button class="add-cart" id="addToCartButton" href="" onclick="addCart({{$product->id}})">
+                                Add To Cart
+                            </button>
                         </div>
                         <div class="pro-details-compare-wishlist pro-details-wishlist ">
                             <a href="{{ route('wishlist') }}"><i class="pe-7s-like"></i></a>
@@ -180,18 +195,8 @@
                 <div id="des-details1" class="tab-pane active">
                     <div class="product-description-wrapper">
                         <p>
-
-                            Lorem ipsum dolor sit amet, consectetur adipisi elit, incididunt ut labore et. Ut enim
-                            ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commol
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste
-                            natus error sit voluptatem accusantiulo doloremque laudantium, totam rem aperiam, eaque
-                            ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                            explicabo. Nemo enim ipsam voluptat quia voluptas sit aspernatur aut odit aut fugit, sed
-                            quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                            quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                            quia non numquam eius modi tempora incidunt ut labore
+                            “Welcome to our online store! With us, you will experience excellent shopping services and quality products. With our clothing products, we are committed to bringing you the best products at reasonable prices. Moreover, our website
+                            provides you with excellent support services to serve you better. Let's explore our website to find the perfect products for you.”
 
                         </p>
                     </div>
@@ -396,6 +401,7 @@
 <!-- Global Vendor, plugins JS -->
 
 <!-- Vendor JS -->
+
 @include('home.includes.end')
 </body>
 

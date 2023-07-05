@@ -12,60 +12,10 @@
                         <ul>
                             <li class=""><a href="{{ route('home') }} ">Home</a>
                             </li>
-                            <li class="dropdown position-static"><a href="#">Shop <i
-                                        class="pe-7s-angle-down"></i></a>
-                                <ul class="mega-menu d-block">
-                                    <li class="d-flex">
-                                        <ul class="d-block">
+                            <li class=""><a href="{{ route('shop_4_column') }}">Shop </a>
 
-                                            <li class="title"><a href="#">Shop Page</a></li>
-                                            <li><a href="{{ route('shop_4_column') }}">Shop 4 Column</a></li>
-                                            <li><a href="{{ route('shop_left_sidebar') }}">Shop Left Sidebar</a></li>
-
-                                        </ul>
-
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">Other Shop Pages</a></li>
-                                                <li><a href=" {{ route('cart') }}">Cart Page</a></li>
-                                                <li><a href=" {{ route('compare') }}">Compare Page</a></li>
-                                                <li><a href=" {{ route('wishlist') }}">Wishlist Page</a></li>
-                                                <li><a href=" {{ route('account') }}">Account Page</a></li>
-
-
-                                        </ul>
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">Pages</a></li>
-                                            <li><a href="{{route('error')}}">404 Page</a></li>
-                                            <li><a href=" {{ route('login') }}">Login & Register Page</a></li>
-                                            <li><a href=" {{ route('checkout') }}">Checkout Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-
-                                        <ul class="menu-banner w-100">
-                                            <li>
-                                                <a class="p-0" href="{{ route('shop_left_sidebar') }}"><img
-                                                        class="img-responsive w-100"
-                                                        src="{{asset('home/assets/images/banner/7.jpg')}}" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="p-0" href="{{ route('shop_left_sidebar') }}"><img
-                                                        class="img-responsive w-100"
-                                                        src="{{asset('home/assets/images/banner/8.jpg')}}" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="p-0" href="{{ route('shop_left_sidebar') }}"><img
-                                                        class="img-responsive w-100"
-                                                        src="{{asset('home/assets/images/banner/9.jpg')}}" alt=""></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="{{ route('shop_left_sidebar') }}">Single Left Sidebar</a></li>
-                                </ul>
+                            <li class="dropdown "><a href="{{ route('shop_left_sidebar') }}">Blogs</a>
                             </li>
                             <li><a href="{{ route('about') }}">About us</a></li>
                             <li><a href="{{ route('contact') }}">Contact us</a></li>
@@ -87,16 +37,27 @@
                             <i class="pe-7s-like"></i>
                         </a>
                         <!-- Single Wedge End -->
-                        <a href="#offcanvas-cart"
-                           class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
-                            <i class="pe-7s-shopbag"></i>
-                            <span class="header-action-num">01</span>
-                            <!-- <span class="cart-amount">€30.00</span> -->
-                        </a>
-                        <a href="#offcanvas-mobile-menu"
-                           class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
-                            <i class="pe-7s-menu"></i>
-                        </a>
+                        @if(Auth::check())
+                            <a href="#offcanvas-cart"
+                               class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+                                <i class="pe-7s-shopbag"></i>
+                                <span class="header-action-num">
+                                    @php
+                                    $countCart = Auth::user()->carts->count();
+                                    @endphp
+                                   @if($countCart > 0 && $countCart < 10)
+                                       {{$countCart}}
+                                   @else
+                                       10+
+                                   @endif
+                                </span>
+                                <!-- <span class="cart-amount">€30.00</span> -->
+                            </a>
+                            <a href="#offcanvas-mobile-menu"
+                               class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+                                <i class="pe-7s-menu"></i>
+                            </a>
+                        @endif
                     </div>
                     <!-- Header Action End -->
                 </div>

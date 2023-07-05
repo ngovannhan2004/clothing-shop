@@ -7,7 +7,7 @@
 
 <!-- Top Bar -->
 
-<div class="header-to-bar"> HELLO EVERYONE! 25% Off All Products </div>
+<div class="header-to-bar"> HELLO EVERYONE! 25% Off All Products</div>
 
 <!-- Top Bar -->
 <!-- Header Area Start -->
@@ -52,63 +52,41 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-15px"
-                                                     src="{{asset('home/assets/images/product-image/1.jpg')}}" alt="" /></a>
-                                </td>
-                                <td class="product-name"><a href="#">Product Name</a></td>
-                                <td class="product-price-cart"><span class="amount">$60.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                               value="1" />
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">$70.00</td>
-                                <td class="product-remove">
-                                    <a href="#"><i class="fa fa-pencil"></i></a>
-                                    <a href="#"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-15px"
-                                                     src="{{asset('home/assets/images/product-image/2.jpg')}}" alt="" /></a>
-                                </td>
-                                <td class="product-name"><a href="#">Product Name</a></td>
-                                <td class="product-price-cart"><span class="amount">$50.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                               value="1" />
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">$80.00</td>
-                                <td class="product-remove">
-                                    <a href="#"><i class="fa fa-pencil"></i></a>
-                                    <a href="#"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-15px"
-                                                     src="{{asset('home/assets/images/product-image/3.jpg')}}" alt="" /></a>
-                                </td>
-                                <td class="product-name"><a href="#">Product Name</a></td>
-                                <td class="product-price-cart"><span class="amount">$70.00</span></td>
-                                <td class="product-quantity">
-                                    <div class="cart-plus-minus">
-                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                               value="1" />
-                                    </div>
-                                </td>
-                                <td class="product-subtotal">$90.00</td>
-                                <td class="product-remove">
-                                    <a href="#"><i class="fa fa-pencil"></i></a>
-                                    <a href="#"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
+                            @php
+                                $groupedCarts = Auth::user()->carts->groupBy('product_id');
+                            @endphp
+
+                            @foreach ($groupedCarts as $productCarts)
+                                @php
+                                    $firstItem = $productCarts->first();
+                                    $quantity = $productCarts->sum('quantity');
+                                    $priceWithQuantity = $firstItem->product->price * $quantity;
+                                @endphp
+
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <a href="#"><img class="img-responsive ml-15px"
+                                                         src="{{ $firstItem->product->feature_image_path }}"
+                                                         alt=""/></a>
+                                    </td>
+                                    <td class="product-name"><a href="#">{{ $firstItem->product->name }}</a></td>
+                                    <td class="product-price-cart"><span
+                                            class="amount">${{$priceWithQuantity }}</span></td>
+                                    <td class="product-quantity">
+                                        <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" type="text" name="qtybutton"
+                                                   value="{{ $quantity }}"/>
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal"> ${{$priceWithQuantity }}</td>
+                                    <td class="product-remove">
+                                        <a href="{{ route('update', $firstItem->id) }}"><i
+                                                class="fa fa-pencil"></i></a>
+                                        <a href="{{ route('destroy', $firstItem->id) }}"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -163,7 +141,7 @@
                                         <label>
                                             * Zip/Postal Code
                                         </label>
-                                        <input type="text" />
+                                        <input type="text"/>
                                     </div>
                                     <button class="cart-btn-2" type="submit">Get A Quote</button>
                                 </div>
@@ -178,7 +156,7 @@
                             <div class="discount-code">
                                 <p>Enter your coupon code if you have one.</p>
                                 <form>
-                                    <input type="text" required="" name="name" />
+                                    <input type="text" required="" name="name"/>
                                     <button class="cart-btn-2" type="submit">Apply Coupon</button>
                                 </form>
                             </div>
@@ -189,16 +167,40 @@
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                             </div>
-                            <h5>Total products <span>$260.00</span></h5>
+                            @php
+                                $totalProductsPrice = 0;
+                            @endphp
+
+                            @foreach ($groupedCarts as $productCarts)
+                                @php
+                                    $firstItem = $productCarts->first();
+                                    $quantity = $productCarts->sum('quantity');
+                                    $priceWithQuantity = $firstItem->product->price * $quantity;
+                                    $totalProductsPrice += $priceWithQuantity;
+                                @endphp
+                            @endforeach
+
+                            <h5>Total products <span>${{ $totalProductsPrice }}</span></h5>
                             <div class="total-shipping">
                                 <h5>Total shipping</h5>
                                 <ul>
-                                    <li><input type="checkbox" /> Standard <span>$20.00</span></li>
-                                    <li><input type="checkbox" /> Express <span>$30.00</span></li>
+                                    @foreach($groupedCarts as $productCarts)
+                                        @php
+                                            $firstItem = $productCarts->first();
+                                            $quantity = $productCarts->sum('quantity');
+                                            $priceWithQuantity = $firstItem->product->price * $quantity;
+                                        @endphp
+                                        <li>
+                                            <input type="checkbox" data-price="{{ $priceWithQuantity }}" class="shipping-checkbox" />
+                                            {{ $firstItem->product->name }}
+                                            <span>{{ $priceWithQuantity }}</span>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
-                            <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
-                            <a href="{{ route('checkout')  }}">Proceed to Checkout</a>
+                            <h4 class="grand-totall-title" id="grand-total-title">Grand Total <span>${{ $totalProductsPrice }}</span></h4>
+                            <a href="{{ route('checkout') }}">Proceed to Checkout</a>
+
                         </div>
                     </div>
                 </div>

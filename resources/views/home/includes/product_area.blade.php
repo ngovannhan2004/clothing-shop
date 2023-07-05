@@ -58,8 +58,8 @@
                                                 <a href="{{ route('compare') }}" class="action compare" title="Compare"><i
                                                         class="pe-7s-refresh-2"></i></a>
                                             </div>
-                                            <button title="Add To Cart" class=" add-to-cart">Add
-                                                To Cart
+                                            <button title="Add To Cart"class=" add-to-cart">
+                                                <a href="{{route('cart.add', [$product->id, 1])}}">Add To Cart</a>
                                             </button>
                                         </div>
                                         <div class="content">
@@ -78,6 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach
                         </div>
                     </div>
@@ -87,4 +88,5 @@
         </div>
     </div>
 </div>
+
 <!-- Product Area End -->

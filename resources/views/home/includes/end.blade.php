@@ -22,4 +22,5 @@
 <script src="{{asset('home/assets/js/main.js')}}"></script>
 
 
+
 @yield('js')
