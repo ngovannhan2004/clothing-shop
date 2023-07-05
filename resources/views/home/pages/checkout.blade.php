@@ -211,18 +211,36 @@
                     <div class="your-order-wrap gray-bg-4">
                         <div class="your-order-product-info">
                             <div class="your-order-top">
-                                <ul>
-                                    <li>Product</li>
-                                    <li>Total</li>
-                                </ul>
-                            </div>
-                            <div class="your-order-middle">
-                                <ul>
-                                    <li><span class="order-middle-left">Product Name X 1</span> <span
-                                            class="order-price">$100 </span></li>
-                                    <li><span class="order-middle-left">Product Name X 1</span> <span
-                                            class="order-price">$100 </span></li>
-                                </ul>
+                                @php
+                                    $total = 0;
+                                @endphp
+
+                                <div class="your-order-top">
+                                    <ul>
+                                        <li>Product</li>
+                                        <li>Total</li>
+                                    </ul>
+                                </div>
+                                <div class="your-order-middle">
+                                    @foreach(Auth::user()->carts->groupBy('product_id') as $productCarts)
+                                        @php
+                                            $firstItem = $productCarts->first();
+                                            $quantity = $productCarts->sum('quantity');
+                                            $subtotal = $firstItem->product->price * $quantity;
+                                            $total += $subtotal;
+                                        @endphp
+
+                                        <ul>
+                                            <li>
+                                                <span class="order-middle-left">{{ $firstItem->product->name }}    X   {{ $quantity }}</span>
+                                            </li>
+                                            <li><span class="order-price">   ${{ $subtotal }}</span></li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+
+
+
                             </div>
                             <div class="your-order-bottom">
                                 <ul>
@@ -233,7 +251,7 @@
                             <div class="your-order-total">
                                 <ul>
                                     <li class="order-total">Total</li>
-                                    <li>$100</li>
+                                    <li>${{$total}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -290,7 +308,7 @@
                         </div>
                     </div>
                     <div class="Place-order mt-25">
-                        <a class="btn-hover" href="#">Place Order</a>
+                        <a class="btn-hover" href="#" id="printButton">Print</a>
                     </div>
                 </div>
             </div>
@@ -313,7 +331,13 @@
 <!-- Global Vendor, plugins JS -->
 
 <!-- Vendor JS -->
+<script>
+    document.getElementById("printButton").addEventListener("click", function() {
+        window.print();
+    });
+</script>
 @include('home.includes.end')
+
 </body>
 
 </html>
