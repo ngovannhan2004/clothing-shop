@@ -16,9 +16,9 @@ class AdminController extends Controller
 
     public function login()
   {
-//        if(auth()->check()){
-//            return redirect()->to('/admin/categories');
-//        }
+        if(auth()->check()){
+            return redirect()->to('/admin/categories');
+        }
 
         return view('login');
     }

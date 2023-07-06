@@ -81,15 +81,16 @@ class ProductService implements DAOInterface
     function update($data, $id)
     {
         $product = $this->product->find($id);
-        $product->update([
-            'name' => $data['name'],
-            'price' => $data['price'],
-            'feature_image_path' => $data['feature_image_path'],
-            'category_id' => $data['category_id'],
-            'content' => $data['content_html'],
-            'slug' => Str::slug($data['name']),
-        ]);
+        $product->name = $data['name'];
+        $product->price = $data['price'];
+        $product->feature_image_path = $data['feature_image_path'];
+        $product->category_id = $data['category_id'];
+        $product->content = $data['content'];
+        $product->slug = Str::slug($data['name']);
+        $product->save();
+        return $product;
     }
+
 
 
     public function delete($id)

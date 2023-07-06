@@ -19,14 +19,25 @@
                             </li>
                             <li><a href="{{ route('about') }}">About us</a></li>
                             <li><a href="{{ route('contact') }}">Contact us</a></li>
+
                         </ul>
+
                     </div>
                 </div>
                 <!-- Header Action Start -->
                 <div class="col col-lg-auto align-self-center pl-0">
                     <div class="header-actions">
+
+                        @if(Auth::check())
+                            <a href="{{ route('logout') }}" class="header-action-btn login-btn">Logout</a>
+                            @if(Auth::user()->isAdmin())
+                                <a href="{{ route('admin.categories.index') }}" class="header-action-btn login-btn">Admin</a>
+                            @endif
+                        @else
                         <a href="{{ route('login') }}" class="header-action-btn login-btn" data-bs-toggle="modal"
                            data-bs-target="#loginActive">Sign In</a>
+                        @endif
+
                         <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                             <i class="pe-7s-search"></i>
@@ -45,7 +56,7 @@
                                     @php
                                     $countCart = Auth::user()->carts->count();
                                     @endphp
-                                   @if($countCart > 0 && $countCart < 10)
+                                   @if($countCart >= 0 && $countCart < 10)
                                        {{$countCart}}
                                    @else
                                        10+

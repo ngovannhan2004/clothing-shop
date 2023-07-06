@@ -98,8 +98,7 @@ class AdminProductController extends Controller
             'category_id' => $request->category_id,
             'content' => $request->content_html,
             'slug' => Str::slug($request->name),
-            'user_id' => auth()->user()->id
-
+            'user_id' => auth()->user()->id,
         ];
         $this->productService->update($data, $id);
         return redirect()->route('admin.products.index')->with('success', 'Cập nhật sản phẩm thành công');

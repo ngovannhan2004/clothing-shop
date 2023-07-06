@@ -57,7 +57,6 @@ class UserService implements DAOInterface
         $user->update([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
             'role' => $data['role'],
         ]);
 

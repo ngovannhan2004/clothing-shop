@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -44,7 +45,10 @@ class User extends Authenticatable
     ];
 
 
-    function carts(){
+    function carts(): hasMany{
         return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
+    function isAdmin():bool{
+        return $this-> role === 'admin';
     }
 }

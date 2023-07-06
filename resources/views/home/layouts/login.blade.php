@@ -56,7 +56,7 @@
                                         @endif
 
 
-                                        <input type="text" name="email" placeholder="Name" />
+                                        <input type="text" name="email" placeholder="email" />
                                         <input type="password" name="password" placeholder="Password" />
                                         <div class="button-box">
                                             <div class="login-toggle-btn">

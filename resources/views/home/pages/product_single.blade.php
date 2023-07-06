@@ -109,7 +109,7 @@
                                 console.log(quantity);
                                 $.ajax({
                                     type: "GET",
-                                    url: "../addCart/" + product_id + "/" + quantity,
+                                    url: "../laravel-filemanager/addCart/" + product_id + "/" + quantity,
                                     success: function (data) {
                                         window.location.reload();
                                     }

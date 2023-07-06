@@ -79,7 +79,6 @@ class AdminUserController extends Controller
         $data = [
             'name' => ucfirst($request->name),
             'email' => $request->email,
-            'password' => bcrypt($request->password),
             'role' => $request->role
         ];
         $this->userService->update($data,$id );

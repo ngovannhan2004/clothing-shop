@@ -20,24 +20,15 @@
                             $quantity = $productCarts->sum('quantity');
                             $subtotal = $firstItem->product->price * $quantity;
                         @endphp
+                        <li>
+                            <a href="" class="image"><img src="{{ $firstItem->product->feature_image_path }}" alt="Cart product Image"></a>
+                            <div class="content">
+                                <a href="   " class="title">{{ $firstItem->product->name }}</a>
+                                <span class="quantity-price"> {{ $quantity }} x <span class="amount">${{ $firstItem->product->price }}</span></span>
+                                <a href="#" class="remove">×</a>
+                            </div>
+                        </li>
 
-                        <tr>
-                            <td class="product-thumbnail">
-                                <a href="#"><img class="img-responsive ml-15px" src="{{ $firstItem->product->feature_image_path }}" alt="" /></a>
-                            </td>
-                            <td class="product-name"><a href="#">{{ $firstItem->product->name }}</a></td>
-                            <td class="product-price-cart"><span class="amount">{{ $firstItem->product->price }}</span></td>
-                            <td class="product-quantity">
-                                <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="{{ $quantity }}" />
-                                </div>
-                            </td>
-                            <td class="product-subtotal">${{ $subtotal }}</td>
-                            <td class="product-remove">
-                                <a href="{{ route('destroy', $firstItem->id) }}"><i class="fa fa-pencil"></i></a>
-                                <a href="{{ route('destroy', $firstItem->id) }}"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>
                     @endforeach
                 @endif
 
