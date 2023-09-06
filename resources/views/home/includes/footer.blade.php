@@ -119,7 +119,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <p class="copy-text"> © 2021 <strong>Jesco</strong> Made With Ngo Van Nhan & Minh Huyền </p>
+                        <p class="copy-text"> © 2023  <strong>Jesco</strong> Made With Ngo Van Nhan & Minh Huyền </p>
                     </div>
                 </div>
             </div>
