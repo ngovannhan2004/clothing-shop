@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\CategoryService;
+use App\Http\Services\MenuService;
 use App\Http\Services\ProductService;
 use App\Http\Services\UserService;
 use App\Models\User;
@@ -14,21 +15,23 @@ class HomeController extends Controller
     private ProductService $productService;
     private CategoryService $categoryService;
     private UserService $userService;
+    private MenuService $MenuService;
 
 
-
-    public function __construct(ProductService $productService, CategoryService $categoryService, UserService $userService)
+    public function __construct(ProductService $productService, CategoryService $categoryService, UserService $userService, MenuService $MenuService)
     {
         $this->productService = $productService;
         $this->categoryService = $categoryService;
         $this->userService = $userService;
+        $this->MenuService = new $MenuService();
     }
 
     public function home()
     {
         $products = $this->productService->getAll();
         $categories = $this->categoryService->getAll();
-        return view('home.layouts.home', compact(['products', 'categories']));
+        $menus = $this->MenuService->getAll();
+        return view('home.layouts.home', compact(['products', 'categories','menus']));
     }
 
     public function login()

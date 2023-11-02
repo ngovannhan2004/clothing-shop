@@ -19,12 +19,10 @@ class AdminController extends Controller
         if(auth()->check()){
             return redirect()->to('/admin/categories');
         }
-
         return view('login');
     }
     public function postLogin(Request $request)
     {
-
         $checkLogin = $this->userService->login($request);
         if($checkLogin !== null){
             auth()->login($checkLogin);
@@ -37,6 +35,7 @@ class AdminController extends Controller
         return redirect()->route('login');
 
     }
+
 
 
 
